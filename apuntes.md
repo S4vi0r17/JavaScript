@@ -1,4 +1,5 @@
-# JavaScript Variables
+# JavaScript 
+## Variables
 - Number: Representa números enteros y decimales. Características: positivos, negativos, cero, ±253 precisión.
 
 ```js
@@ -60,7 +61,7 @@ let objeto = {nombre: "Juan", edad: 20};
 let array = [1, "dos", true];
 ```
 
-# Declarar variables:
+## Declarar variables:
 
 - var: Es la forma antigua de declarar variables en JavaScript. Tiene scope de función, se puede redeclarar y reasignar más de una vez.
 
@@ -93,3 +94,15 @@ Otras diferencias:
 - let se usa para valores que pueden cambiar su estado o reasignarse.
 
 > Se recomienda usar let y const para declarar variables con sus respectivos scopes en lugar de var.
+
+## Secuencias de escape
+
+| Código  | Significado         |
+|---------|---------------------|
+|    \'   | Comilla simple      |
+|    \"   | Comilla doble       |
+|    \\   | Barra invertida     |
+|    \n   | Nueva línea         |
+|    \r   | Retorno de carro    |
+|    \t   | Tabulador           |
+|    \b   | Retroceso           |
