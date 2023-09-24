@@ -43,3 +43,5 @@ console.timeEnd('spread');
 otrasFrutas.push('Mango');
 
 console.table({ frutas, otrasFrutas });
+
+// Nota: Los objetos siempre se pasan por referencia, mientras que los primitivos se pasan por valor.
