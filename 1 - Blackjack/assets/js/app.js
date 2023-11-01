@@ -9,6 +9,19 @@ let deck = [];
 let tipos = ['C', 'D', 'H', 'S'];
 let especiales = ['A', 'J', 'Q', 'K'];
 
+let puntosJugador = 0, puntosComputadora = 0;
+
+
+// Referecias HTML
+
+const btn_pedir = document.querySelector('#btn-pedir');
+
+const smalls = document.querySelectorAll('small')
+
+const divCartarPlayer = document.querySelector('#player-card')
+
+
+
 const crearDeck = () => {
     for(let i=2; i <=10; i++){
         for(let tipo of tipos){
@@ -52,3 +65,31 @@ const valorCarta = (carta) => {
 const valor = valorCarta(pedirCarta());
 console.log(deck);
 console.log(valor);
+
+// Events
+
+
+btn_pedir.addEventListener('click', () => {
+    const carta = pedirCarta();
+    puntosJugador += valorCarta(carta);
+
+    smalls[0].innerText = puntosJugador;
+
+
+    // crear img
+    const imgCard = document.createElement('img');
+
+    imgCard.src = `assets/cartas/${carta}.png`;
+    imgCard.classList.add('card');
+
+    divCartarPlayer.append(imgCard);
+
+    // Puntos
+    if(puntosJugador > 21){
+        console.warn('Perdiste :\'v');
+        btn_pedir.disabled = true;
+    }else if(puntosJugador === 21){
+        console.warn('21, cool');
+        btn_pedir.disabled = true;
+    }
+});
