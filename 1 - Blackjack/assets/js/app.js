@@ -149,6 +149,8 @@ btn_detener.addEventListener('click', () => {
 })
 
 btn_nuevo.addEventListener('click', () => {
+    console.clear();
+    deck = [];
     deck = crearDeck();
 
     puntosComputadora = 0;

@@ -1,0 +1,19 @@
+/* Selecciona todos los elementos <p> que están dentro del elemento con id="contenedor" */
+#contenedor p {
+    color: blue;
+}
+
+/* Selecciona solo los elementos <p> que son hijos directos del elemento con id="contenedor" */
+#contenedor>p {
+    font-weight: bold;
+}
+
+/* Selecciona el elemento <p> que está justo después del elemento <h1> */
+h1+p {
+    font-style: italic;
+}
+
+/* Selecciona todos los elementos <p> que están después del elemento <h2> */
+h2~p {
+    text-decoration: underline;
+}

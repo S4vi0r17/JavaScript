@@ -1,0 +1,33 @@
+.saludar {
+  background-color: antiquewhite;
+  display: block;
+  border: none;
+  cursor: pointer;
+  padding: 30px 50px;
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+.click {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.click input{
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.click button{
+    background-color: antiquewhite;
+    display: block;
+    border: none;
+    cursor: pointer;
+    padding: 15px 25px;
+    font-size: 20px;
+    margin: 0 auto;
+}
