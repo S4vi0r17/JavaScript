@@ -31,3 +31,26 @@
     font-size: 20px;
     margin: 0 auto;
 }
+
+/* Mostrar Nombre */
+
+.mostrarNombre{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#hora{
+  font-size: 80px;
+  margin: 10px auto;
+  padding: 10px;
+}
