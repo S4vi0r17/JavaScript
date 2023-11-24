@@ -49,4 +49,4 @@ var 01_;
 var  nombreProducto = 'Monitor 30 Pulgadas'; // CamelCase
 var nombre_producto = 'Monitor 30 Pulgadas'; //underscore
 var NombreProducto = 'Monitor 30 Pulgadas'; // pascal case
-var nombreproducto = 'Monitor 30 Pulgadas';
+var nombreproducto = 'Monitor 30 Pulgadas'; // lowercase
