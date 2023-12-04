@@ -2,11 +2,11 @@
 
 // Los arrow functions son otra forma de declarar funciones y fueron agregadas en las últimas versiones, la sintaxis es más corta y cuando comencé a utilizarlas me parecian algo complejas, en este video y los siguientes te mostraré todo lo que tienes que saber de arrow functions
 
-const aprendiendo = function() {
+const aprendiendo = function () {
     console.log('Aprendiendo JavaScript');
 }
 
-const aprendiendo = () =>  {
+const aprendiendo = () => {
     console.log('Aprendiendo JavaScript');
 }
 
@@ -18,4 +18,3 @@ const aprendiendo = () => 'Aprendiendo JavaScript';
 
 
 console.log(aprendiendo());
-

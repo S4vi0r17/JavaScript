@@ -16,11 +16,10 @@ sumar(); // se manda llamar por su nombre seguido del parentesis()
 
 
 // Expresión de función - Este tipo de funciones se asigna como si fuera una variable
-const sumar2 = function() {
+const sumar2 = function () {
     console.log(3 + 3);
 }
 
 sumar2(); // se manda llamar de la misma forma
 
 // Existe una 3ra forma de crear funciones, que más bien son métodos, la veremos un poco más adelante...
-

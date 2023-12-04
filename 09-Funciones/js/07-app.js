@@ -19,5 +19,3 @@ function usuarioAutenticado(usuario) {
     console.log('Autenticando usuario...');
     console.log(`Usuario autenticado con éxito ${usuario} `)
 }
-
-

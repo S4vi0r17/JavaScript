@@ -6,7 +6,7 @@ function sumar(a, b) {
     return a + b;
 }
 
-const resultado = sumar(1,2);
+const resultado = sumar(1, 2);
 
 console.log(resultado);
 
@@ -24,6 +24,7 @@ function calcularImpuesto(total) {
 total = agregarCarrito(200);
 total = agregarCarrito(300);
 total = agregarCarrito(400);
+
 console.log(total);
 
 

@@ -3,19 +3,19 @@
 // también llegan a ser muy comunes sobretodo porque es un objeto grande con todas las funciones...
 
 const reproductor = {
-    reproducir: function(id) {
+    reproducir: function (id) {
         console.log(`Reproduciendo canción id ${id}`);
     },
-    pausar: function() {
+    pausar: function () {
         console.log('pausando...');
     },
-    borrar: function(id) {
+    borrar: function (id) {
         console.log(`Borrando canción con id: ${id}`)
     },
-    crearPlaylist: function(nombre) {
+    crearPlaylist: function (nombre) {
         console.log(`Creando la Playlist ${nombre}`);
     },
-    reproducirPlaylist: function(nombre) {
+    reproducirPlaylist: function (nombre) {
         console.log(`Reproduciendo la Playlist ${nombre}`)
     }
 }
@@ -24,9 +24,8 @@ reproductor.pausar();
 
 // Tambien los métodos pueden quedarse por fuera
 // reproductor.borrar = function(id) {
-    
+
 // }
 reproductor.borrar(20);
 reproductor.crearPlaylist('Heavy Metal');
 reproductor.reproducirPlaylist('Heavy Metal');
-
