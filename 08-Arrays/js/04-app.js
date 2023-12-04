@@ -4,7 +4,6 @@ const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
 
 meses[0] = 'Nuevo Mes'
 
-
 // También se puede añadir al final
 meses[6] = 'Ultimo Mes'
 
