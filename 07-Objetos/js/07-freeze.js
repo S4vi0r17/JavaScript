@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; // Para que no permita que se creen variables sin antes declararlas
 
 // Como vimos en el video anterior los objetos si se pueden modificar sus valores, veamos como prevenirlo en caso de que sea algo que desees hacer.
 
@@ -17,7 +17,7 @@ console.log(producto);
 
 // Pero veamos como prevenir que un objeto sea modificado, para ello utilizaremos freeze, y funciona de la siguiente forma:
 
-Object.freeze( producto ); // Freeze toma como argumento el objeto
+Object.freeze(producto); // Freeze toma como argumento el objeto
 
 // producto.disponible = false;
 
@@ -32,6 +32,6 @@ Object.freeze( producto ); // Freeze toma como argumento el objeto
 
 // Finalmente si quieres revisar si un objeto esta congelado puedes usar
 
-console.log( Object.isFrozen(producto) );
+console.log(Object.isFrozen(producto));
 
 console.log(producto);

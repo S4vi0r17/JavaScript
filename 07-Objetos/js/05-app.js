@@ -4,17 +4,23 @@ const producto = {
     nombre: "Monitor 20 pulgadas",
     precio: 30,
     disponible: true,
-    informacion : {
-        peso: '1kg',
-        medida: '1m'
+    informacion: {
+        medidas: {
+            peso: '1kg',
+            medida: '1m'
+        },
+        fabricacion: {
+            pais: 'China'
+        }
     }
 }
 
 
-const { nombre, informacion, informacion: { peso, medida } } = producto;
-
+// Desestructurar pais china
+const { nombre, informacion, informacion: { fabricacion, fabricacion: { pais } } } = producto;
+// para acceder a la fabricacion se debe usar una coma.
 
 console.log(nombre)
 console.log(informacion)
-console.log(peso)
-console.log(medida)
+console.log(fabricacion)
+console.log(pais)

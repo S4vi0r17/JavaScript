@@ -19,4 +19,6 @@ console.log(producto);
 
 producto.disponible = false;
 
+delete producto.precio; // Eliminar una propiedad de un objeto const
+
 console.log(producto); // Puedes ver que lo pudimos modificar, a pesar de ser const, veamos como prevenir esto en el próximo video

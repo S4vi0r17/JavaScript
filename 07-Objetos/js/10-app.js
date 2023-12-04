@@ -14,6 +14,6 @@ const medidas = {
 
 // Otra forma de hacerlo que se considera más moderna es con algo llamado el Spread Operator o Rest Operator
 
-const resultado = { ...producto, ...medidas};
+const resultado = { ...producto, ...medidas };
 
 console.log(resultado);
