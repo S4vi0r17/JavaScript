@@ -9,6 +9,5 @@ const meses3 = meses.concat(meses2);
 console.log(meses3);
 
 // Existe otra forma... que es con rest operator o spread operator..
-const meses4 = [...meses,...meses2 ]; // Tienes que asegurarte de que sean arrays cuando usas ...  'Otro mes'
+const meses4 = [...meses, ...meses2]; // Tienes que asegurarte de que sean arrays cuando usas ...  'Otro mes'
 console.log(meses4)
-
