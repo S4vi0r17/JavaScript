@@ -2,7 +2,7 @@
 
 const metodoPago = 'efectivo';
 
-switch(metodoPago) {
+switch (metodoPago) {
     case 'efectivo':
         console.log(`Pagaste con ${metodoPago}`);
         break;

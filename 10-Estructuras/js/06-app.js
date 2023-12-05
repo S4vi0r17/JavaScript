@@ -13,7 +13,7 @@ const puedePagar = true;
 
 if (usuario && puedePagar) {
     console.log('Tu Pedido se hizo con éxito...');
-    
+
 } else {
     console.log('hubo un error con tu pago.')
 }
@@ -28,10 +28,10 @@ if (usuario && puedePagar) {
     console.log('Tu Pedido se hizo con éxito...');
 } else if (!usuario) {
     console.log('Inicia sesión para realizar el pedido')
-} else if(!puedePagar) {
+} else if (!puedePagar) {
     console.log('Fondos Insuficientes')
 } else {
     console.log('hubo un error con tu pago.')
 }
 
-// Aquí ya me extendi un poco con el ejemplo, pero lo importante es que recuerdes que el operador && revisa porque se cumplan ambas condiciones, ahora que pasa cuando solo quieres revisar una, veamos el operador OR en el próximo video...
+// Aquí ya me extendi un poco con el ejemplo, pero lo importante es que recuerdes que el operador && revisa porque se cumplan ambas condiciones, ahora que pasa cuando solo quieres revisar una, veamos el operador OR.
