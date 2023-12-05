@@ -1,14 +1,14 @@
 // Otro iterador muy común es el while loop, este se ejecuta mientras una condición sea verdadera..
 
 let i = 0;
+
 while (i < 10) { // condicion
 
     // Bloque de código...
     console.log(`Numero: ${i}`);
-    
 
-
-    i++; // incremento
+    // incremento
+    i++;
 }
 
 // El while se ejecuta mientras una condición sea verdadera, por lo tanto si inicicializamos en 20, no hará nada..

@@ -8,5 +8,6 @@ for (let pendiente of pendientes) {
     console.log(pendiente);
 }
 
-// Sin duda una forma más sencilla que un foreach y un for no?
+// For of itera sobre arreglos, Maps y Sets, no sobre objetos, para eso tenemos for in...
 
+// Sin duda una forma más sencilla que un foreach y un for, no?
