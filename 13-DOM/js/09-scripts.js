@@ -13,7 +13,7 @@ primerEnlace.remove();
 // La otra forma es por el padre..
 const navegacion = document.querySelector('.navegacion');
 
-// el sigueinte paso es identificar el elemento a borrar..
+// el siguiente paso es identificar el elemento a borrar..
 
 // console.log(navegacion.children);
 

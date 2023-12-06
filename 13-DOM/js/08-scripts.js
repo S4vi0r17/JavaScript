@@ -76,13 +76,9 @@ console.log(navegacion.firstChild)
 console.log(navegacion.firstElementChild);
 
 // Cambiar el primer texto...
-navegacion.firstElementChild.textContent = 'Nuevo Enlace...'
-+
-
-
+navegacion.firstElementChild.textContent = 'Nuevo Enlace...';
 
 // En el video anterior vimos como hacer traversing de un elemento padre hacia el hijo, JavaScript también te permite seleccionar un elemento hijo e ir navegando hacia el padre...
-
 
 // vamos a seleccionar el primer enlace...
 const enlace = document.querySelector('a');
@@ -99,8 +95,6 @@ console.log(enlace.parentElement)
 
 // También puedes ir al padre del padre...
 console.log(enlace.parentElement.parentElement)
-
-
 
 
 

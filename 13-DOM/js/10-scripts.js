@@ -35,7 +35,7 @@ console.log(enlace);
 // crear los 3 parrafos.
 
 const parrafo1 = document.createElement('P');
-parrafo1.textContent = 'Concierto';
+parrafo1.textContent = 'Lujan';
 parrafo1.classList.add('categoria');
 parrafo1.classList.add('concierto');
 
