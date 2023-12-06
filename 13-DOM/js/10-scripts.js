@@ -23,11 +23,13 @@ enlace.classList.add('enlace');
 
 enlace.setAttribute('data-enlace', 'nuevo-enlace')
 
-const navegacion = document.querySelector('.navegacion');
-navegacion.appendChild(enlace);
-
-
 console.log(enlace);
+
+const navegacion = document.querySelector('.navegacion');
+// navegacion.appendChild(enlace);
+
+console.log(navegacion.children);
+navegacion.insertBefore(enlace, navegacion.children[1]);
 
 
 // Vamos a crear un segundo ejemplo, crearemos uno de nuestros cards... sin duda será algo más complejo...

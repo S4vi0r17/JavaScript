@@ -18,3 +18,5 @@ function mostrarOcultarFooter() {
         this.textContent = 'X Cerrar';
     }
 }
+
+// This es el elemento que ejecuta el evento, en este caso el botón
