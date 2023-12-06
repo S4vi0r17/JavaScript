@@ -8,9 +8,9 @@ const encabezado = document.querySelector('.contenido-hero h1');
 // console.log(encabezado);
 
 // Si deseas acceder al texto hay 3 formas de hacerlo...
-console.log(encabezado.innerText); 
-console.log(encabezado.textContent);
-console.log(encabezado.innerHTML);
+console.log(encabezado.innerText); // Solo el texto
+console.log(encabezado.textContent); // Texto, pero incluye el espacio
+console.log(encabezado.innerHTML); // El texto y el HTML
 
 // Cual es la diferencia entre estas 3... bueno, si le ponemos a ese elemento visibility: hidden; en el CSS, 
 
@@ -40,5 +40,7 @@ document.querySelector('.contenido-hero h1').textContent = nuevoTexto;
 
 const imagen = document.querySelector('.card img');
 console.log(imagen.src);
+
 // Cambiar la imagen...
-imagen.src = 'img/hacer2.jpg';
+imagen.src = '/13-DOM/img/hacer2.jpg';
+console.log(imagen.src);

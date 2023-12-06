@@ -4,33 +4,30 @@
 
 let elemento;
 
-elemento = document;
-elemento = document.all;
-elemento = document.all[0];
-elemento = document.head;
-elemento = document.body;
-elemento = document.domain;
-elemento = document.URL;
-elemento = document.characterSet;
-elemento = document.contentType;
-elemento = document.forms;
-elemento = document.forms[0];
-elemento = document.forms[0].id;
-elemento = document.forms[0].method;
-elemento = document.forms[0].action;
+elemento = document; // Accedemos a todo el documento HTML
+elemento = document.all; // Accedemos a todos los elementos del documento HTML
+elemento = document.all[0]; // Accedemos al primer elemento del documento HTML
+elemento = document.head; // Accedemos a la cabecera del documento HTML
+elemento = document.body; // Accedemos al cuerpo del documento HTML
+elemento = document.domain; // Accedemos al dominio del documento HTML(localhost)
+elemento = document.URL; // Accedemos a la URL del documento HTML
+elemento = document.characterSet; // Accedemos al tipo de codificacion del documento HTML
+elemento = document.contentType; // Accedemos al tipo de contenido del documento HTML, por ejemplo text/html
+elemento = document.forms; // Accedemos a los formularios del documento HTML
+elemento = document.forms[0]; // Accedemos al primer formulario del documento HTML
+elemento = document.forms[0].id; // Accedemos al id del primer formulario del documento HTML
+elemento = document.forms[0].method; // Accedemos al metodo del primer formulario del documento HTML
+elemento = document.forms[0].action; // Accedemos a la accion del primer formulario del documento HTML
 
-elemento = document.links;
-elemento = document.links[4].id;
-elemento = document.links[4].className;
-elemento = document.forms[4].classList;
-elemento = document.forms[4].classList[0];
+elemento = document.links; // Accedemos a los enlaces del documento HTML
+elemento = document.links[4].id; // Accedemos al id del quinto enlace del documento HTML
+elemento = document.links[4].className; // Accedemos a la clase del quinto enlace del documento HTML
+elemento = document.forms[4].classList; // Accedemos a la lista de clases del quinto enlace del documento HTML
+elemento = document.forms[4].classList[0]; // Accedemos a la primera clase del quinto enlace del documento HTML
 
-elemento = document.images;
+elemento = document.images; // Accedemos a las imagenes del documento HTML
 
-elemento = document.scripts;
-elemento = document.scripts[2].getAttribute('src');
+elemento = document.scripts; // Accedemos a los scripts del documento HTML
+elemento = document.scripts[2].getAttribute('src'); // Accedemos al atributo src del tercer script del documento HTML
 
 console.log(elemento);
-
-
-

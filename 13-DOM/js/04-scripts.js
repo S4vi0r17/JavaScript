@@ -8,7 +8,7 @@ const card = document.querySelector('.card'); // QuerySelctor utiliza una sintax
 
 console.log(card);
 
-// al ser una sintaaxis tipo CSS puedes utilizar selectores más especificos...
+// al ser una sintaxis tipo CSS puedes utilizar selectores más especificos...
 
 const info = document.querySelector('.premium .info');
 console.log(info);
@@ -22,7 +22,7 @@ const formulario = document.querySelector('#formulario'); // En CSS seleccionas 
 console.log(formulario);
 // También los ID pueden tener selectores especificos como el de arriba, pero recuerda un ID es único asi que no tendría mucho sentido no?
 
-// Si un selector no existe, 
+// Si un selector no existe, retorna null
 const noExiste = document.querySelector('#no-existe');
 console.log(noExiste);
 
