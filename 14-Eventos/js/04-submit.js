@@ -2,7 +2,6 @@
 
 // Cuando envias un formulario usualmente lo que este en el action, es la página que se abre...
 
-// 
 
 const formulario = document.querySelector('.formulario');
 

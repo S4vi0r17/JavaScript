@@ -8,8 +8,7 @@ window.addEventListener('scroll', () => {
     // Detectar el Scrolling vertical...
 
     // const pxScroll = window.scrollY;
-    // console.log(pxScroll);
-
+    // console.log(pxScroll); // Esto nos da la cantidad de pixeles que se han hecho scroll en el sitio web...
 
 
     // Detectar un elemento al dar scroll...
@@ -17,13 +16,11 @@ window.addEventListener('scroll', () => {
     const premium = document.querySelector('.premium');
 
     const ubicacion = premium.getBoundingClientRect(); // Este método te da el tamaño de un elemento y su ubicación respecto a la ubicación actual..
-        // console.log(ubicacion);
+    // console.log(ubicacion);
 
-    if(ubicacion.top < 100) {
+    if (ubicacion.top < 100) {
         console.log('Ya esta visible');
     } else {
         console.log('Aún no esta visible..')
     }
-
-
-})
+});

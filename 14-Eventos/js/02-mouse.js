@@ -20,8 +20,10 @@ nav.addEventListener('mouseout', () => {
 
 // otros eventos abarcan...
 
-// mousedown - // cuando presionamos
-// click - similar, de hecho es probablemente el más utilizado..
+// mousedown - cuando presionamos
+// click - similar, de hecho es probablemente el más utilizado.
 // dbclick - doble click como cuando quieres abrir un archivo
 // mouseup - al soltar
-// 
+// mouseenter - cuando entras al elemento
+// mouseout - cuando sales del elemento
+// mousemove - cuando mueves el mouse dentro del elemento 

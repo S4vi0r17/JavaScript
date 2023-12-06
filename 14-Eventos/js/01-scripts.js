@@ -20,9 +20,10 @@
 // Uno que es muy común y utilizaras en todos tus proyectos es uno llamado DOMContentLoaded
 
 console.log(1)
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log(2);
-    }) // Nota todos los eventos que hay disponibles
+// Nota todos los eventos que hay disponibles
+document.addEventListener('DOMContentLoaded', () => {
+    console.log(2);
+})
 console.log(3);
 
 // En el siguiente video estaremos viendo eventos que ocurren con el mouse!

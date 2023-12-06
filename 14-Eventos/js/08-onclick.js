@@ -43,7 +43,6 @@ const contenedor = document.querySelector('.hacer .contenedor-cards');
 contenedor.appendChild(contenedorCard); // al inicio info
 
 
-
 function nuevaFuncion(id) {
     console.log('click..', id)
 }

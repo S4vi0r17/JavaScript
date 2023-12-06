@@ -2,8 +2,8 @@
 
 // Event Bubling es cuando presionas en un evento, pero ese evento se propaga por muchos otros dando resultados inesperados
 
- // tenemos diferentes cards, con información...
-//  vamos a crear 3 selectores
+// tenemos diferentes cards, con información...
+// vamos a crear 3 selectores
 
 const cardDiv = document.querySelector('.card');
 const infoDiv = document.querySelector('.info');
