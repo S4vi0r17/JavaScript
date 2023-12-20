@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // events
 
-    // Diferencia entre blur e input:
+    // Diferencia entre blur e input: blur se ejecuta cuando el usuario sale del input, input se ejecuta en tiempo real
     emailInput.addEventListener('blur', validate); // validate() llama a la funcion, validate solo es la funcion
 
     subjectInput.addEventListener('blur', validate); // Input en tiempo real
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Asignar valores
         well[evt.target.name] = evt.target.value.trim().toLowerCase();
         // console.log(well);
-
+        console.log(evt.target.name);
         // comprobar email
         checkWell();
     }
