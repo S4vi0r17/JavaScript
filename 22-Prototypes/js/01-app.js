@@ -13,7 +13,7 @@ const cliente = {
 
 // Si necesitas añadir o crear un objeto reutilizable tienes que utilizar un constructor de función
 
-// En JavaScript hoy en día tenemos classes, pero previamente la programación porientada aobjetos era de la siguiente forma:
+// En JavaScript hoy en día tenemos classes, pero previamente la programación orientada a objetos era de la siguiente forma:
 function Cliente(nombre, saldo) {
     this.nombre = nombre;
     this.saldo = saldo;
