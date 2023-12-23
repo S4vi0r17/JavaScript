@@ -36,6 +36,15 @@ class Budget {
     //         console.log(expense);
     //     });
     // }
+
+    deleteExpense(id) {
+        this.expenses = this.expenses.filter(expense => expense.id !== id);
+        console.log(this.expenses);
+        this.substractBudget();
+        // ui.addExpenseList(this.expenses);
+        // ui.updateBudgetLeft(this.budgetLeft);
+        // ui.checkBudget(this);
+    }
 }
 
 class UI {
@@ -64,7 +73,7 @@ class UI {
     }
 
     // Add list of expenses
-    addExpenseList(expenses) {
+    showExpense(expenses) {
 
         // Clean HTML
         this.cleanHTML();
@@ -88,6 +97,11 @@ class UI {
             btnDelete.classList.add('btn', 'btn-danger', 'borrar-gasto');
             btnDelete.innerHTML = 'Delete &times;'; // &times; is the html entity for the multiplication symbol, only works with innerHTML
 
+            btnDelete.onclick = (evt) => {
+                console.log(id);
+                deleteExpense(id);
+            }
+
             newExpense.appendChild(btnDelete);
 
             // Add to HTML
@@ -105,6 +119,30 @@ class UI {
     // Update budget left
     updateBudgetLeft(budgetLeft) {
         document.querySelector('#restante').textContent = budgetLeft;
+    }
+
+    // Check budget
+    checkBudget(budgetObj) {
+        const { budget, budgetLeft } = budgetObj;
+
+        const remaining = document.querySelector('.restante');
+
+        // Check 25% of budget
+        if ((budget / 4) >= budgetLeft) {
+            remaining.classList.remove('alert-success', 'alert-warning');
+            remaining.classList.add('alert-danger');
+        } else if ((budget / 2) >= budgetLeft) {
+            remaining.classList.remove('alert-success');
+            remaining.classList.add('alert-warning');
+        } else {
+            remaining.classList.remove('alert-danger', 'alert-warning');
+            remaining.classList.add('alert-success');
+        }
+
+        if (budgetLeft <= 0) {
+            ui.printMessage('Budget exceeded', 'error');
+            form.querySelector('button[type="submit"]').disabled = true;
+        }
     }
 }
 
@@ -149,10 +187,25 @@ function addExpense(evt) {
     budget.addExpense(expense);
 
     // console.log(budget.expenses);
-    ui.addExpenseList(budget.expenses);
+    ui.showExpense(budget.expenses);
 
     // Add budgetLeft to html
     ui.updateBudgetLeft(budget.budgetLeft);
 
+    // Check budget
+    ui.checkBudget(budget);
+
     form.reset();
+}
+
+function deleteExpense(id) {
+    // Delete from the object
+    budget.deleteExpense(id);
+
+    // Delete from the HTML
+    ui.showExpense(budget.expenses);
+
+    // Update budget left
+    ui.updateBudgetLeft(budget.budgetLeft);
+    ui.checkBudget(budget);
 }
