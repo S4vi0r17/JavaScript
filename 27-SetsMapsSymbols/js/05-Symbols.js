@@ -1,4 +1,3 @@
-
 // Symbol
 
 // Los simbolos son nuevos en ES6, te permiten crear propiedad única 
@@ -20,8 +19,8 @@ let apellido = Symbol();
 
 // Crear un objeto vacio
 let persona = {}
-// Esto no va a servir
 
+// Esto no va a servir
 persona.datos;
 
 // debe tener corchetes
@@ -32,22 +31,24 @@ persona.saldo = 500;
 console.log(persona);
 console.log(persona[nombre]);
 
+console.log('-for in symbol-');
 // No se puede acceder al SYMBOL con un for.
-for(let i in persona) {
+for (let i in persona) {
     console.log(`${i} : ${persona[i]}`);
 }
 
+// Un symbol no es iterable
+
 // También se puede crear UNA DESCRIPCION DEL SYMBOLO
 /*
-let nombreCliente = Symbol('Nombre del cliente');
-let cliente = {};
+    let nombreCliente = Symbol('Nombre del cliente');
+    let cliente = {};
 
-cliente[nombreCliente] = 'Pedro';
+    cliente[nombreCliente] = 'Pedro';
 
 
-// Probar
-console.log(cliente);
-console.log(cliente[nombreCliente]);
-console.log(nombreCliente);
-
+    // Probar
+    console.log(cliente); // {Symbol(Nombre del cliente): "Pedro"}
+    console.log(cliente[nombreCliente]); // Pedro
+    console.log(nombreCliente); // Symbol(Nombre del cliente)
 */
