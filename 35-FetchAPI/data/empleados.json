@@ -1,0 +1,20 @@
+[
+     {
+          "id" : 1,
+          "nombre" : "Juan",
+          "empresa" : "Thor Ragnarok",
+          "trabajo" : "Web Developer - Backend"
+     },
+     {
+          "id" : 2,
+          "nombre" : "Alejandra",
+          "empresa" : "Thor Ragnarok",
+          "trabajo" : "UX/UI Designer"
+     },
+     {
+          "id" : 3,
+          "nombre" : "Pedro",
+          "empresa" : "Código con Juan",
+          "trabajo" : "Mobile Developer"
+     }
+]
