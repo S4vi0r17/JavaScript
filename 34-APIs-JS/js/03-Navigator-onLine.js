@@ -21,4 +21,3 @@ function updateNetState(e) {
         console.log('Parece que has perdido tu conexión...')
     }
 }
-
