@@ -5,32 +5,33 @@ cargarJSONArrayBtn.addEventListener('click', obtenerDatos);
 
 
 function obtenerDatos() {
-    fetch('data/empleados.json') 
-        .then( respuesta => {
+
+    fetch('data/empleados.json')
+
+        .then(respuesta => {
             return respuesta.json()
-        }) 
+        })
         .then(resultado => {
             mostrarHTML(resultado);
             console.log(resultado)
         })
 }
 
-function mostrarHTML(empleados) {
+function mostrarHTML(empleados) {
     const contenido = document.querySelector('#contenido');
 
     let html = '';
 
-    empleados.forEach( empleado => {
-        const { id, nombre, empresa, trabajo} = empleado;
+    empleados.forEach(empleado => {
+        let { id, nombre, empresa, trabajo } = empleado;
 
         html += `
-            <p>Empleado: ${nombre} </p>
             <p>ID: ${id} </p>
-            <p>Empresa: ${empresa} </p>
+            <p>Empleado: ${nombre} </p>
             <p>Trabajo: ${trabajo} </p>
+            <p>Empresa: ${empresa} </p>
         `
     });
 
     contenido.innerHTML = html;
-    
 }
