@@ -9,12 +9,23 @@ const select = document.querySelector("#categorias");
 const recipesContainer = document.querySelector("#resultado");
 const modal = new bootstrap.Modal('#modal', {}); // Objeto vacion porque no tiene opciones
 
+/* Selectores para favoritos */
+const favoritesContainer = document.querySelector(".favoritos");
+if (favoritesContainer) { // If para evitar errores en la pagina de favoritos
+    fetchFavorites();
+}
+/* Fin selectores para favoritos */
+
 // Event Listeners
-select.addEventListener("change", getRecipes);
+if (select) { // If para evitar errores en la pagina de favoritos
+    select.addEventListener("change", getRecipes);
+}
 
 // Init App
 function init() {
-    fetchCategories();
+    if (select) { // If para evitar errores en la pagina de favoritos
+        fetchCategories();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", init);
@@ -73,15 +84,15 @@ function appendRecipes(recipes) {
 
         let recipeImage = document.createElement("img");
         recipeImage.classList.add("card-img-top");
-        recipeImage.src = strMealThumb;
-        recipeImage.alt = `${strMeal} recipe image`;
+        recipeImage.src = strMealThumb ?? recipe.image; // ??: Si existe strMealThumb, lo usa, si no, usa recipe.image. Para que no haya conflicto con favorites
+        recipeImage.alt = `${strMeal ?? recipe.title} recipe image`; // Favorites
 
         let recipeBody = document.createElement("div");
         recipeBody.classList.add("card-body");
 
         let recipeTitle = document.createElement("h3");
         recipeTitle.classList.add("card-title", "mb-3");
-        recipeTitle.textContent = strMeal;
+        recipeTitle.textContent = strMeal ?? recipe.title; // Favorites
 
         let recipeButton = document.createElement("button");
         recipeButton.classList.add("btn", "btn-danger", "w-100");
@@ -89,7 +100,7 @@ function appendRecipes(recipes) {
         // recipeButton.dataset.bsTarget = "#modal";
         // recipeButton.dataset.bsToggle = "modal";
         recipeButton.onclick = () => {
-            fetchRecipe(idMeal);
+            fetchRecipe(idMeal ?? recipe.id); // Favorites
         };
         // La diferencia entre onclick y addEventListener es que el primero funciona para botones creados dinamicamente y el segundo no
 
@@ -225,6 +236,15 @@ function cleanHTML(selector) {
 addToLocalStorage = recipe => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     localStorage.setItem("favorites", JSON.stringify([...favorites, recipe]));
+
+    // Para que se actualice la pagina de favoritos
+    if (favoritesContainer) {
+        const newFavorites = JSON.parse(localStorage.getItem("favorites"));
+
+        // cleanHTML(favoritesContainer);
+        appendRecipes(newFavorites);
+        // fetchFavorites(); // No lo he probado
+    }
 }
 
 // Check if the recipe is already in local storage
@@ -238,6 +258,15 @@ function deleteFromLocalStorage(id) {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const newFavorites = favorites.filter(favorite => favorite.id !== id);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
+
+    // Para que se actualice la pagina de favoritos
+    if (favoritesContainer) {
+        const newFavorites = JSON.parse(localStorage.getItem("favorites"));
+
+        // cleanHTML(favoritesContainer);
+        appendRecipes(newFavorites);
+        // fetchFavorites(); // Tambien funciona
+    }
 }
 
 // Show toast
@@ -249,3 +278,20 @@ function showToast(message) {
     toastBody.textContent = message;
     toast.show();
 }
+
+/* Selectores para favoritos */
+function fetchFavorites() {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (favorites.length) {
+        appendRecipes(favorites);
+        return
+    }
+
+    const noFavorites = document.createElement("p");
+    noFavorites.classList.add("text-center", "mt-5", "fs-4", "font-bold");
+    noFavorites.textContent = "There are no favorites yet";
+
+    favoritesContainer.appendChild(noFavorites);
+}
+/* Fin selectores para favoritos */
