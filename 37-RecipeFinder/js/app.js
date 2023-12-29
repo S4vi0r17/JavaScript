@@ -153,7 +153,7 @@ function showRecipeModal(recipe) {
     const titleInstructions = document.createElement("h3");
     titleInstructions.classList.add("mt-4");
     titleInstructions.textContent = "Instructions:";
-    
+
     const instructions = document.createElement("p");
     instructions.textContent = strInstructions;
 
@@ -183,6 +183,7 @@ function showRecipeModal(recipe) {
             btnFavorite.classList.remove("btn-danger");
             btnFavorite.classList.add("btn-outline-danger");
             // Si lo eliminamos, podemos añaadirlo
+            showToast("Recipe removed from favorites");
             return;
         }
 
@@ -196,6 +197,7 @@ function showRecipeModal(recipe) {
         btnFavorite.classList.remove("btn-outline-danger");
         btnFavorite.classList.add("btn-danger");
         // Si lo añadimos, podemos eliminarlo
+        showToast("Recipe added to favorites");
     };
 
     const btnClose = document.createElement("button");
@@ -208,7 +210,6 @@ function showRecipeModal(recipe) {
 
     modalFooter.appendChild(btnFavorite);
     modalFooter.appendChild(btnClose);
-
 
     modal.show()
 }
@@ -237,4 +238,14 @@ function deleteFromLocalStorage(id) {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const newFavorites = favorites.filter(favorite => favorite.id !== id);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
+}
+
+// Show toast
+function showToast(message) {
+    const toastDiv = document.querySelector("#toast");
+    const toastBody = document.querySelector(".toast-body");
+    const toast = new bootstrap.Toast(toastDiv);
+
+    toastBody.textContent = message;
+    toast.show();
 }
