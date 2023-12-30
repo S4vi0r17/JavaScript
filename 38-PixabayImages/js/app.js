@@ -12,6 +12,12 @@
 
 const form = document.querySelector('#formulario');
 const result = document.querySelector('#resultado');
+const paginationDiv = document.querySelector('#paginacion');
+
+const imagesPerPage = 40;
+let totalPages;
+let iterator;
+let currentPage;
 
 window.onload = () => {
     form.addEventListener('submit', validateForm);
@@ -21,7 +27,10 @@ window.onload = () => {
 
 // Validate form
 function validateForm(e) {
+
     e.preventDefault();
+
+    currentPage = 1;
 
     const search = document.querySelector('#termino').value;
 
@@ -30,7 +39,7 @@ function validateForm(e) {
         return;
     }
 
-    searchImages(search);
+    searchImages();
 }
 
 // Show alert
@@ -39,6 +48,7 @@ function showAlert(message) {
     const alertExists = document.querySelector('.bg-red-100');
 
     if (!alertExists) {
+
         const alert = document.createElement('p');
 
         alert.classList.add('bg-red-100', 'border-red-400', 'text-red-700', 'px-4', 'py-3', 'rounded', 'max-w-lg', 'mx-auto', 'mt-6', 'text-center');
@@ -57,21 +67,26 @@ function showAlert(message) {
 }
 
 // Search images
-function searchImages(term) {
+function searchImages() {
+
+    let search = document.querySelector('#termino').value;
 
     // Format query
     // let query = term.replace(' ', '+'); // Only replaces the first space
-    term = term.replace(/\s/g, '+'); // Replaces all spaces
+    term = search.replace(/\s/g, '+'); // Replaces all spaces
 
     const key = '41546446-241404cf665c10e39ef165435';
-    const url = `https://pixabay.com/api/?key=${key}&q=${term}&per_page=100`;
+    const url = `https://pixabay.com/api/?key=${key}&q=${term}&per_page=${imagesPerPage}&page=${currentPage}`;
 
     Spinner();
 
     fetch(url)
 
         .then(response => response.json())
-        .then(result => { showImages(result.hits) });
+        .then(result => {
+            totalPages = calculatePages(result.totalHits);
+            showImages(result.hits)
+        });
 }
 
 // Show images
@@ -80,12 +95,13 @@ function showImages(images) {
     clearHTML();
 
     images.forEach(image => {
-        let { previewURL, likes, views, largeImageURL } = image;
+
+        let { previewURL, likes, views, largeImageURL, webformatURL } = image;
 
         result.innerHTML += `
             <div class="w-1/2 md:w-1/3 lg:w-1/4 p-3 mb-4">
                 <div class="bg-white card">
-                    <img class="w-full" src="${previewURL}" alt="Image">
+                    <img class="w-full" src="${webformatURL}" alt="Image">
 
                     <div class="p-4">
                         <p class="font-bold">${likes} <span class="font-light">Likes</span></p>
@@ -97,6 +113,14 @@ function showImages(images) {
             </div>
         `;
     });
+
+    // Clear previous pagination
+    while (paginationDiv.firstChild) {
+        paginationDiv.removeChild(paginationDiv.firstChild);
+    }
+
+    // Generate new pagination
+    showPagination();
 }
 
 // Show spinner
@@ -107,7 +131,7 @@ function Spinner() {
     clearHTML();
 
     const divSpinner = document.createElement('div');
-    divSpinner.classList.add('spinner', 'mx-auto', 'mt-16');
+    divSpinner.classList.add('spinner', 'my-16');
     divSpinner.innerHTML = `
         <div class="bounce1"></div>
         <div class="bounce2"></div>
@@ -121,5 +145,46 @@ function Spinner() {
 function clearHTML() {
     while (result.firstChild) {
         result.removeChild(result.firstChild);
+    }
+}
+
+// Calculate pages
+function calculatePages(total) {
+    return parseInt(Math.ceil(total / imagesPerPage));
+}
+
+// Generator to be able to iterate the next page
+function* createPagination(total) {
+    for (let i = 1; i <= total; i++) {
+        yield i;
+    }
+}
+
+// Show pagination
+function showPagination() {
+
+    iterator = createPagination(totalPages);
+
+    while (true) {
+
+        const { value, done } = iterator.next();
+
+        if (done) return;
+
+        // Create button for each page
+        const btn = document.createElement('a');
+        btn.href = '#';
+        btn.dataset.page = value;
+        btn.textContent = value;
+        btn.classList.add('siguiente', 'bg-yellow-400', 'px-4', 'py-1', 'mr-2', 'font-bold', 'mb-4', 'uppercase', 'rounded', 'hover:bg-yellow-500', 'hover:text-gray-700');
+
+        paginationDiv.appendChild(btn);
+
+        btn.onclick = () => {
+
+            currentPage = value;
+
+            searchImages();
+        }
     }
 }
