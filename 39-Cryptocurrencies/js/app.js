@@ -1,0 +1,1 @@
+// API docs: https://min-api.cryptocompare.com/documentation
