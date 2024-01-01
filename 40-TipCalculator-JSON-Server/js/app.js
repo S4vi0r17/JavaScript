@@ -4,6 +4,12 @@ let client = {
     orders: [],
 }
 
+const categoryList = {
+    1: 'food',
+    2: 'drink',
+    3: 'dessert'
+}
+
 const btnSaveClient = document.querySelector('#guardar-cliente');
 
 btnSaveClient.addEventListener('click', saveClient);
@@ -39,5 +45,95 @@ function saveClient() {
         return;
     }
 
-    console.log('All fields are correct');
+    // Add to object
+    client = { ...client, table, time };
+    // Si el spread operator va al final, se sobreescribe el objeto client y queda vacío
+
+    // Hide modal
+    const modal = document.querySelector('#formulario');
+    const modalBootstrap = bootstrap.Modal.getInstance(modal);
+    modalBootstrap.hide();
+
+    // Show sections
+    showSections();
+
+    // get dishes
+    getDishes();
+}
+
+// Show sections
+function showSections() {
+
+    const hiddenSections = document.querySelectorAll('.d-none');
+
+    hiddenSections.forEach(section => section.classList.remove('d-none'));
+}
+
+// Get dishes
+function getDishes() {
+    const url = `http://localhost:4000/platillos`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(result => showDishes(result))
+        .catch(error => console.log(error));
+}
+
+// Show dishes
+function showDishes(dishes) {
+
+    const content = document.querySelector('#platillos .contenido');
+
+    dishes.forEach(dish => {
+        let { id, nombre, precio, categoria } = dish;
+
+        // // Row
+        // const row = document.createElement('tr');
+        // row.innerHTML = `
+        //     <td>${nombre}</td>
+        //     <td>${precio}</td>
+        //     <td>
+        //         <input type="number" class="form-control" min="1" value="1" id="cantidad">
+        //     </td>
+        //     <td>
+        //         <button type="button" class="btn btn-primary" data-id="${id}" data-nombre="${nombre}" data-precio="${precio}">Agregar</button>
+        //     </td>
+        // `;
+
+        let row = document.createElement('div');
+        row.classList.add('row', 'border-bottom', 'py-3');
+
+        let name = document.createElement('div');
+        name.classList.add('col-md-4');
+        name.textContent = nombre;
+
+        let price = document.createElement('div');
+        price.classList.add('col-md-3', 'fw-bold');
+        price.textContent = `$${precio}`;
+
+        let category = document.createElement('div');
+        category.classList.add('col-md-3');
+        category.textContent = categoryList[categoria];
+
+        let quantity = document.createElement('input');
+        quantity.classList.add('form-control');
+        quantity.type = 'number';
+        quantity.min = 0;
+        quantity.value = 0;
+        quantity.id = `cantidad-${id}`;
+
+        let addQuantity = document.createElement('div');
+        addQuantity.classList.add('col-md-2');
+        addQuantity.appendChild(quantity);
+
+
+        row.appendChild(name);
+        row.appendChild(price);
+        row.appendChild(category);
+        row.appendChild(addQuantity);
+
+
+        // Add to content
+        content.appendChild(row);
+    });
 }
