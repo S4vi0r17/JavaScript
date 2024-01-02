@@ -122,6 +122,14 @@ function showDishes(dishes) {
         quantity.value = 0;
         quantity.id = `cantidad-${id}`;
 
+        // funtion that detects changes in the input
+        // Es necesrio usar una función anónima para que no se ejecute inmediatamente, ya que si pongo addDish(id) se ejecuta inmediatamente
+        quantity.onchange = () => {
+            let quantityValue = parseInt(quantity.value);
+            // console.log(quantityValue);
+            addDish({ ...dish, quantityValue })
+        };
+
         let addQuantity = document.createElement('div');
         addQuantity.classList.add('col-md-2');
         addQuantity.appendChild(quantity);
@@ -136,4 +144,41 @@ function showDishes(dishes) {
         // Add to content
         content.appendChild(row);
     });
+}
+
+// Add dish
+function addDish(product) {
+
+    let { orders } = client;
+
+    // check if dish is higher than 0
+    if (product.quantityValue > 0) {
+        // console.log('es mayor');
+        // console.log(orders.some(order => order.id === product.id));
+
+        if (orders.some(order => order.id === product.id)) {
+
+            let ordersUpdate = orders.map(order => {
+                if (order.id === product.id) {
+                    order.quantityValue = product.quantityValue;
+                }
+                return order;
+            });
+            // console.log(ordersUpdate);
+            // Assign to client
+            client.orders = [...ordersUpdate];
+
+        } else {
+            // console.log('no existe');
+            client.orders = [...orders, product];
+        }
+
+    } else {
+        // console.log('no es mayor');
+        // Delete element when quantity is 0
+        let result = orders.filter(order => order.id !== product.id);
+        client.orders = [...result];
+    }
+
+    console.log(client.orders);
 }
