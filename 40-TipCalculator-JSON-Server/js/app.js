@@ -198,7 +198,7 @@ function updateResume() {
     const content = document.querySelector('#resumen .contenido');
 
     const resume = document.createElement('div')
-    resume.classList.add('col-md-6', 'card', 'py-5', 'px-3', 'my-3', 'shadow')
+    resume.classList.add('col-md-6', 'card', 'py-2', 'px-3', 'my-3', 'shadow')
 
     // Info table
     const table = document.createElement('p');
@@ -234,7 +234,7 @@ function updateResume() {
     let { orders: ordersList } = client;
 
     ordersList.forEach(order => {
-        console.log(order); // {id: 1, nombre: "Pizza", precio: 50, categoria: 1, quantityValue: 1}
+        // console.log(order); // {id: 1, nombre: "Pizza", precio: 50, categoria: 1, quantityValue: 1}
         let { nombre, quantityValue, precio } = order;
 
         let list = document.createElement('li');
@@ -304,13 +304,16 @@ function updateResume() {
     })
 
     // Add to resume
+    resume.appendChild(title);
     resume.appendChild(table);
     resume.appendChild(time);
-    resume.appendChild(title);
     resume.appendChild(orders);
 
     // Add to content
     content.appendChild(resume);
+
+    // Show tip's form
+    showTipForm();
 }
 
 // Clean HTML
@@ -356,4 +359,165 @@ function showEmptyOrder() {
     text.textContent = 'No dishes selected';
 
     content.appendChild(text);
+}
+
+// Show tip's form
+function showTipForm() {
+    const content = document.querySelector('#resumen .contenido');
+
+    const formDiv = document.createElement('div');
+    formDiv.classList.add('card', 'py-2', 'px-3', 'my-3', 'shadow');
+
+
+    const form = document.createElement('fdiv');
+    form.classList.add('col-md-6', 'formulario');
+
+    const title = document.createElement('h3');
+    title.classList.add('my-4', 'fw-bold', 'text-center');
+    title.textContent = 'Tip';
+
+    // Radio buttons
+    // const radioDiv = document.createElement('div');
+
+    // Butto 10%
+    const radio10 = document.createElement('input');
+    radio10.classList.add('form-check-input');
+    radio10.type = 'radio';
+    radio10.name = 'tip';
+    radio10.value = 10;
+    radio10.onclick = calculateTip;
+
+    const label10 = document.createElement('label');
+    label10.classList.add('form-check-label');
+    label10.textContent = '10%';
+
+    const radio10Div = document.createElement('div');
+    radio10Div.classList.add('form-check');
+    radio10Div.appendChild(radio10);
+    radio10Div.appendChild(label10);
+
+    // Butto 25%
+    const radio25 = document.createElement('input');
+    radio25.classList.add('form-check-input');
+    radio25.type = 'radio';
+    radio25.name = 'tip';
+    radio25.value = 25;
+    radio25.onclick = calculateTip;
+
+    const label25 = document.createElement('label');
+    label25.classList.add('form-check-label');
+    label25.textContent = '25%';
+
+    const radio25Div = document.createElement('div');
+    radio25Div.classList.add('form-check');
+    radio25Div.appendChild(radio25);
+    radio25Div.appendChild(label25);
+
+    // Butto 50%
+    const radio50 = document.createElement('input');
+    radio50.classList.add('form-check-input');
+    radio50.type = 'radio';
+    radio50.name = 'tip';
+    radio50.value = 50;
+    radio50.onclick = calculateTip;
+
+    const label50 = document.createElement('label');
+    label50.classList.add('form-check-label');
+    label50.textContent = '50%';
+
+    const radio50Div = document.createElement('div');
+    radio50Div.classList.add('form-check');
+    radio50Div.appendChild(radio50);
+    radio50Div.appendChild(label50);
+
+
+
+    formDiv.appendChild(title);
+    formDiv.appendChild(radio10Div);
+    formDiv.appendChild(radio25Div);
+    formDiv.appendChild(radio50Div);
+    form.appendChild(formDiv)
+
+
+    content.appendChild(form);
+}
+
+// Calculate tip
+function calculateTip() {
+    // console.log('desde');
+    const { orders } = client;
+    let subtotal = 0;
+
+    orders.forEach(order => {
+        subtotal += order.precio * order.quantityValue;
+    });
+
+    // console.log(subtotal);
+    const radioSelected = parseInt(document.querySelector('input[name="tip"]:checked').value);
+
+    // console.log(radioSelected);
+
+    // Calculate tip
+    const tip = subtotal * (radioSelected / 100);
+
+    // Calculate total
+    const total = subtotal + tip;
+
+    // show total to user
+    showTotal(subtotal, tip, total);
+}
+
+// Show total
+function showTotal(subtotal, tip, total) {
+
+    const divTotal = document.createElement('div');
+    divTotal.classList.add('total-pagar', 'my-5');
+
+    // Subtotal
+    const subtotalP = document.createElement('p');
+    subtotalP.classList.add('fs-4', 'fw-bold', 'mt-2');
+    subtotalP.textContent = `Subtotal: `;
+
+    const subtotalValue = document.createElement('span');
+    subtotalValue.classList.add('fw-normal');
+    subtotalValue.textContent = `$${subtotal}`;
+
+    subtotalP.appendChild(subtotalValue);
+
+    // tip
+    const tipP = document.createElement('p');
+    tipP.classList.add('fs-4', 'fw-bold', 'mt-2');
+    tipP.textContent = `Tip: `;
+
+    const tipValue = document.createElement('span');
+    tipValue.classList.add('fw-normal');
+    tipValue.textContent = `$${tip}`;
+
+    tipP.appendChild(tipValue);
+
+    // total
+    const totalP = document.createElement('p');
+    totalP.classList.add('fs-4', 'fw-bold', 'mt-2');
+    totalP.textContent = `Total: `;
+
+    const totalValue = document.createElement('span');
+    totalValue.classList.add('fw-normal');
+    totalValue.textContent = `$${total}`;
+
+    totalP.appendChild(totalValue);
+
+
+    // Delete previous total
+    const previousTotal = document.querySelector('.total-pagar');
+    if (previousTotal) {
+        previousTotal.remove();
+    }
+
+
+    divTotal.appendChild(subtotalP);
+    divTotal.appendChild(tipP);
+    divTotal.appendChild(totalP);
+
+    const form = document.querySelector('.formulario > div');
+    form.appendChild(divTotal);
 }
