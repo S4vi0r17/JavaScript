@@ -180,5 +180,180 @@ function addDish(product) {
         client.orders = [...result];
     }
 
-    console.log(client.orders);
+    // console.log(client.orders);
+
+    // Clean HTML
+    cleanHTML();
+
+    if (client.orders.length > 0) {
+        // Show resume
+        updateResume();
+    } else {
+        showEmptyOrder();
+    }
+}
+
+// Update resume
+function updateResume() {
+    const content = document.querySelector('#resumen .contenido');
+
+    const resume = document.createElement('div')
+    resume.classList.add('col-md-6', 'card', 'py-5', 'px-3', 'my-3', 'shadow')
+
+    // Info table
+    const table = document.createElement('p');
+    table.textContent = `Table: `;
+    table.classList.add('fw-bold');
+
+    const tableValue = document.createElement('span');
+    tableValue.textContent = client.table;
+    tableValue.classList.add('fw-normal');
+
+    table.appendChild(tableValue);
+
+    // Info time
+    const time = document.createElement('p');
+    time.textContent = `Time: `;
+    time.classList.add('fw-bold');
+
+    const timeValue = document.createElement('span');
+    timeValue.textContent = client.time;
+    timeValue.classList.add('fw-normal');
+
+    time.appendChild(timeValue);
+
+    // Title
+    const title = document.createElement('h3');
+    title.textContent = 'Order resume';
+    title.classList.add('my-4', 'fw-bold', 'text-center');
+
+    // Iterate over orders []
+    const orders = document.createElement('ul');
+    orders.classList.add('list-group', 'list-group-flush');
+
+    let { orders: ordersList } = client;
+
+    ordersList.forEach(order => {
+        console.log(order); // {id: 1, nombre: "Pizza", precio: 50, categoria: 1, quantityValue: 1}
+        let { nombre, quantityValue, precio } = order;
+
+        let list = document.createElement('li');
+        list.classList.add('list-group-item', 'text-uppercase', 'fw-bold');
+
+        let nameElement = document.createElement('h4');
+        nameElement.classList.add('my-4');
+        nameElement.textContent = nombre;
+
+        // Quantity
+        let quantityElement = document.createElement('p');
+        quantityElement.classList.add('my-4', 'fw-bold');
+        quantityElement.textContent = `Quantity: `;
+
+        let quantityValueElement = document.createElement('span');
+        quantityValueElement.classList.add('fw-normal');
+        quantityValueElement.textContent = quantityValue;
+
+        // Add elements to quantity
+        quantityElement.appendChild(quantityValueElement);
+
+
+        // Price
+        let priceElement = document.createElement('p');
+        priceElement.classList.add('my-4', 'fw-bold');
+        priceElement.textContent = `Price: `;
+
+        let priceValueElement = document.createElement('span');
+        priceValueElement.classList.add('fw-normal');
+        priceValueElement.textContent = `$${precio}`;
+
+        // Add elements to price
+        priceElement.appendChild(priceValueElement);
+
+
+        // Subtotal
+        let subtotalElement = document.createElement('p');
+        subtotalElement.classList.add('my-4', 'fw-bold');
+        subtotalElement.textContent = `Subtotal: `;
+
+        let subtotalValueElement = document.createElement('span');
+        subtotalValueElement.classList.add('fw-normal');
+        subtotalValueElement.textContent = `$${precio * quantityValue}`;
+
+        // Add elements to subtotal
+        subtotalElement.appendChild(subtotalValueElement);
+
+
+        // Button delete
+        let btnDelete = document.createElement('button');
+        btnDelete.classList.add('btn', 'btn-danger', 'd-block', 'mx-auto');
+        btnDelete.textContent = 'Delete';
+
+        btnDelete.onclick = () => {
+            deleteDish(order.id);
+        }
+
+        // Add elements to list
+        list.appendChild(nameElement);
+        list.appendChild(quantityElement);
+        list.appendChild(priceElement);
+        list.appendChild(subtotalElement);
+        list.appendChild(btnDelete);
+
+        // Add list to orders
+        orders.appendChild(list);
+    })
+
+    // Add to resume
+    resume.appendChild(table);
+    resume.appendChild(time);
+    resume.appendChild(title);
+    resume.appendChild(orders);
+
+    // Add to content
+    content.appendChild(resume);
+}
+
+// Clean HTML
+function cleanHTML() {
+    const content = document.querySelector('#resumen .contenido');
+
+    while (content.firstChild) {
+        content.removeChild(content.firstChild);
+    }
+}
+
+// Delete dish
+function deleteDish(id) {
+    // console.log('Delete: ',id);
+
+    // Delete from client.orders
+    let { orders } = client;
+    let result = orders.filter(order => order.id !== id);
+    client.orders = [...result];
+
+    // Clean HTML
+    cleanHTML();
+
+    if (client.orders.length > 0) {
+        // Show resume
+        updateResume();
+    } else {
+        showEmptyOrder();
+    }
+
+    // Update quantity
+    const productDelete = `#cantidad-${id}`;
+    const inputDelete = document.querySelector(productDelete);
+    inputDelete.value = 0
+}
+
+// Show empty order
+function showEmptyOrder() {
+    const content = document.querySelector('#resumen .contenido');
+
+    const text = document.createElement('p');
+    text.classList.add('text-center');
+    text.textContent = 'No dishes selected';
+
+    content.appendChild(text);
 }
