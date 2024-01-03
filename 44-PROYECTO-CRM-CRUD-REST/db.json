@@ -1,0 +1,11 @@
+{
+  "clientes": [
+    {
+      "email": "correo@correo.com",
+      "empresa": "Microsoft",
+      "id": 26,
+      "nombre": "Eder Benites",
+      "telefono": "987654321"
+    }
+  ]
+}
