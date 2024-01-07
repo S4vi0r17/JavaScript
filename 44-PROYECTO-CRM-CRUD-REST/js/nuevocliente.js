@@ -1,4 +1,4 @@
-import { showAlert } from './funciones.js';
+import { showAlert, validate } from './funciones.js';
 import { newClient } from './API.js';
 
 (function () {
@@ -8,7 +8,7 @@ import { newClient } from './API.js';
     form.addEventListener('submit', validateClient);
 
     function validateClient(e) {
-        
+
         e.preventDefault();
 
         const name = document.querySelector('#nombre').value;
@@ -31,11 +31,6 @@ import { newClient } from './API.js';
         }
 
         newClient(client);
-
-    }
-
-    function validate(obj) {
-        return !Object.values(obj).every(input => input !== '');
     }
 
 })();

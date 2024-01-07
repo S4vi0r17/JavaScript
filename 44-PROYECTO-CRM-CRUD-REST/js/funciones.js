@@ -1,4 +1,5 @@
-export function showAlert(message, type) {
+export function showAlert(message) {
+
     const alert = document.querySelector('.bg-red-100');
 
     if (!alert) {
@@ -17,4 +18,8 @@ export function showAlert(message, type) {
             alert.remove();
         }, 3000);
     }
+}
+
+export function validate(obj) {
+    return !Object.values(obj).every(input => input !== '');
 }
