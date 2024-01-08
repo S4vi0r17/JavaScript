@@ -1,5 +1,5 @@
 
-// Implicing Bindings.
+// Implicit Bindings.
 
 // Implicit binding le dira de forma clara a la palabra this donde encontrar sus valores
 
