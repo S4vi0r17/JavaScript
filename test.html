@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tree View</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        ul ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="treeView"></div>
+
+    <script>
+        const sequence = "AMERICA(PERÚ(Lima,Arequipa,Chimbote,Trujillo,Cajamarca);ARGENTINA(Cordova,Rosario,Mendoza,Tucuman);MÉXICO(Guadalajara,Monterrey,Hidalgo,Yucatan,Jalisco);BRASIL(Sao Paulo,Rio de Janeiro,Porto Alegre,Bahia,Belo Horizonte);COLOMBIA(Bogota,Cali,Barranquilla,Medellín))EUROPA(ESPAÑA(Madrid,Barcelona,Valencia,Sevilla,Granada);FRANCIA(Paris,Marsella,Lyon,Niza,Burdeos);ITALIA(Roma,Florencia,Milan,Verona,Turin);ALEMANIA(Berlin,Munich,Hamburgo,Bonn))ASIA(CHINA(Pekin,Shangai,Canton);JAPÓN(Tokio,Osaka,Yokohama);INDIA(Nueva Delhi,Calcuta,Bombay))";
+
+        const tokens = sequence.split(/([();,])/).filter(token => token.trim() !== '');
+
+        let result = "<ul>";
+
+        let level = 0;
+
+        tokens.forEach(token => {
+            if (/^\w/.test(token)) {
+                const tabs = '\t'.repeat(level);
+                result += `${tabs}<li>${token}<ul>`;
+                level++;
+            } else if (token === '(') {
+                // Do nothing for opening parenthesis
+            } else if (token === ')') {
+                level--;
+                result += '\t'.repeat(level) + '</ul></li>';
+            } else if (token === ',') {
+                // Do nothing for commas
+            }
+        });
+
+        result += "</ul>";
+
+        document.getElementById("treeView").innerHTML = result;
+    </script>
+</body>
+</html>
