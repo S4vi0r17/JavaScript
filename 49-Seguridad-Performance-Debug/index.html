@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizar Criptomonedas</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/app.css">
-</head>
-<body>
 
-    <div class="container">
-        <div class="row">
-            <div class="one-half column">
-                <img src="img/cryptomonedas.png">
-            </div>
-            <div class="one-half column">
-                <form id="formulario">
-                    <div class="row">
-                        <label>Elige tu Moneda</label>
-                        <select
-                            class="u-full-width"
-                            id="moneda"
-                            name="moneda"
-                        >
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cotizar Criptomonedas</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
+    <link rel="stylesheet" href="css/app.css" />
+</head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="one-half column">
+                    <img src="img/cryptomonedas.png" />
+                </div>
+                <div class="one-half column">
+                    <form id="formulario">
+                        <div class="row">
+                            <label>Elige tu Moneda</label>
+                            <select class="u-full-width" id="moneda" name="moneda">
                                 <option value="">Elige tu moneda</option>
                                 <option value="USD">Dolar Estadounidense</option>
                                 <option value="MXN">Peso Mexicano</option>
                                 <option value="GBP">Libras</option>
                                 <option value="EUR">Euros</option>
-                        </select>
-                    </div>
+                            </select>
+                        </div>
 
-                    <div class="row">
-                    <div>
-                        <label>Elige tu Criptomoneda</label>
-                        <select 
-                            class="u-full-width"
-                            id="criptomonedas"
-                            name="criptomoneda"
-                        >
-                            <option value="">Elige tu criptomoneda</option>
-                        </select>
-                    </div>
-                    </div>
-                    <input class="button-primary u-full-width" type="submit" value="Cotizar" />
+                        <div class="row">
+                            <div>
+                                <label>Elige tu Criptomoneda</label>
+                                <select class="u-full-width" id="criptomonedas" name="criptomoneda">
+                                    <option value="">Elige tu criptomoneda</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input class="button-primary u-full-width" type="submit" value="Cotizar" />
 
-                    <div id="resultado" class="resultado"></div>
-                </form>
+                        <div id="resultado" class="resultado"></div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="js/app.js" defer></script>
+        <script src="js/app.js" defer></script>
 
-    <!-- 
+        <!-- 
 
-        NUEVO: 
-        Async: El Script se carga y ejecuta inmediatamente una vez que se ha descargado
+            NUEVO: 
+            Async: El Script se carga y ejecuta inmediatamente una vez que se ha descargado
 
-        Defer: No se ejecuta hasta que el HTML este listo...
+            Defer: No se ejecuta hasta que el HTML este listo...
 
-        // Defer también nos dará un poco de mejor performance
+            // Defer también nos dará un poco de mejor performance
 
-     -->
-    
-</body>
+            Extra:
+            ofuscar el código para que no sea tan fácil de leerlo y entenderlo
+
+            Otras consideraciones:
+            - Cando trabajes con dependencias, utiliza herramientas como snyk.io para revisar que no tengas dependencias con vulnerabilidades
+            - Ofuscar el código si es necesario
+            - Hashear información sensible
+
+        -->
+    </body>
+
 </html>
