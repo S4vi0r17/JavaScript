@@ -1,5 +1,5 @@
-import Citas from './classes/Citas.js';
-import UI from './classes/UI.js';
+import Citas from "./classes/Citas.js";
+import UI from "./classes/UI.js";
 
 import {
     mascotaInput,
@@ -8,8 +8,8 @@ import {
     fechaInput,
     horaInput,
     sintomasInput,
-    formulario
-} from './selectores.js';
+    formulario,
+} from "./selectores.js";
 
 const administrarCitas = new Citas();
 const ui = new UI(administrarCitas);
@@ -17,13 +17,13 @@ const ui = new UI(administrarCitas);
 let editando = false;
 
 const citaObj = {
-    mascota: '',
-    propietario: '',
-    telefono: '',
-    fecha: '',
-    hora: '',
-    sintomas: ''
-}
+    mascota: "",
+    propietario: "",
+    telefono: "",
+    fecha: "",
+    hora: "",
+    sintomas: "",
+};
 
 export function datosCita(e) {
     //  console.log(e.target.name) // Obtener el Input
@@ -31,15 +31,20 @@ export function datosCita(e) {
 }
 
 export function nuevaCita(e) {
-
     e.preventDefault();
 
     const { mascota, propietario, telefono, fecha, hora, sintomas } = citaObj;
 
     // Validar
-    if (mascota === '' || propietario === '' || telefono === '' || fecha === '' || hora === '' || sintomas === '') {
-
-        ui.imprimirAlerta('Todos los campos son Obligatorios', 'error')
+    if (
+        mascota === "" ||
+        propietario === "" ||
+        telefono === "" ||
+        fecha === "" ||
+        hora === "" ||
+        sintomas === ""
+    ) {
+        ui.imprimirAlerta("Todos los campos son Obligatorios", "error");
 
         return;
     }
@@ -48,12 +53,12 @@ export function nuevaCita(e) {
         // Estamos editando
         administrarCitas.editarCita({ ...citaObj });
 
-        ui.imprimirAlerta('Guardado Correctamente');
+        ui.imprimirAlerta("Guardado Correctamente");
 
-        formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+        formulario.querySelector('button[type="submit"]').textContent =
+            "Crear Cita";
 
         editando = false;
-
     } else {
         // Nuevo Registrando
 
@@ -64,7 +69,7 @@ export function nuevaCita(e) {
         administrarCitas.agregarCita({ ...citaObj });
 
         // Mostrar mensaje de que todo esta bien...
-        ui.imprimirAlerta('Se agregó correctamente')
+        ui.imprimirAlerta("Se agregó correctamente");
     }
 
     // Imprimir el HTML de citas
@@ -79,29 +84,28 @@ export function nuevaCita(e) {
 
 export function reiniciarObjeto() {
     // Reiniciar el objeto
-    citaObj.mascota = '';
-    citaObj.propietario = '';
-    citaObj.telefono = '';
-    citaObj.fecha = '';
-    citaObj.hora = '';
-    citaObj.sintomas = '';
+    citaObj.mascota = "";
+    citaObj.propietario = "";
+    citaObj.telefono = "";
+    citaObj.fecha = "";
+    citaObj.hora = "";
+    citaObj.sintomas = "";
 }
 
 export function eliminarCita(id) {
     administrarCitas.eliminarCita(id);
 
-    ui.imprimirCitas(administrarCitas)
+    ui.imprimirCitas(administrarCitas);
 }
 
 export function cargarEdicion(cita) {
-
     const { mascota, propietario, telefono, fecha, hora, sintomas, id } = cita;
 
     // Reiniciar el objeto
     citaObj.mascota = mascota;
     citaObj.propietario = propietario;
     citaObj.telefono = telefono;
-    citaObj.fecha = fecha
+    citaObj.fecha = fecha;
     citaObj.hora = hora;
     citaObj.sintomas = sintomas;
     citaObj.id = id;
@@ -114,7 +118,12 @@ export function cargarEdicion(cita) {
     horaInput.value = hora;
     sintomasInput.value = sintomas;
 
-    formulario.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
+    formulario.querySelector('button[type="submit"]').textContent =
+        "Guardar Cambios";
 
     editando = true;
+}
+
+export function sumar(a, b) {
+    return a + b;
 }

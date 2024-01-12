@@ -1,1 +1,0 @@
-test('Hola mundo en Jest', () => {  })

@@ -1,6 +1,5 @@
 import Citas from '../js/classes/Citas';
 
-
 describe('Probar la clase de Citas', () => {
 
     const citas = new Citas();
@@ -10,11 +9,11 @@ describe('Probar la clase de Citas', () => {
     test('Agregar una nueva cita', () => {
         const citaObj = {
             id,
-            mascota: 'Hook',
-            propietario: 'Juan',
-            telefono: '19030913',
-            fecha: '10-12-2020',
-            hora:'10:30',
+            mascota: 'Minino',
+            propietario: 'Eder',
+            telefono: '123456789',
+            fecha: '10-12-2024',
+            hora: '10:30',
             sintomas: 'Solo duerme'
         };
 
@@ -22,18 +21,16 @@ describe('Probar la clase de Citas', () => {
 
         // Prueba
         expect(citas).toMatchSnapshot();
-
     });
 
-
-    test('actualizar cita', () => {
+    test('Actualizar cita', () => {
         const citaActualizada = {
             id,
-            mascota: 'Nuevo Nombre',
-            propietario: 'Juan',
-            telefono: '19030913',
+            mascota: 'New Minino',
+            propietario: 'New Eder',
+            telefono: '123456789',
             fecha: '10-12-2020',
-            hora:'10:30',
+            hora: '10:30',
             sintomas: 'Solo duerme'
         };
 
@@ -42,10 +39,19 @@ describe('Probar la clase de Citas', () => {
         expect(citas).toMatchSnapshot();
     });
 
-    test('Eliminar Cita', () => {
+    test('Eliminar cita', () => {
         citas.eliminarCita(id);
 
         expect(citas).toMatchSnapshot();
     });
 
+    test('Mostrar un mensaje de error cuando no hay citas', () => {
+        const mensaje = citas.citas;
+
+        expect(mensaje).toMatchSnapshot();
+    });
+
 });
+
+// Para actualizar el snapshot, ejecutar el comando:
+// npm test -- -u

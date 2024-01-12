@@ -9,6 +9,8 @@
   "author": "Eder Benites",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.7.0"
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2"
   }
 }
