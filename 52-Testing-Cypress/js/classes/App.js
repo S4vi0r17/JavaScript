@@ -10,11 +10,14 @@ import {
 } from "../selectores.js";
 
 class App {
+    
     constructor() {
+
         this.initApp();
     }
 
     initApp() {
+        
         mascotaInput.addEventListener("change", datosCita);
         propietarioInput.addEventListener("change", datosCita);
         telefonoInput.addEventListener("change", datosCita);
