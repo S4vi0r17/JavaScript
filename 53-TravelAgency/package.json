@@ -1,7 +1,7 @@
 {
   "name": "53-travelagency",
   "version": "1.0.0",
-  "description": "NodeJS and ExpressJS",
+  "description": "NodeJS, Express, Boostrap, Pug",
   "main": "index.js",
   "type": "module",
   "scripts": {
