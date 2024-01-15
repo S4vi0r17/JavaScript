@@ -10,5 +10,5 @@ const port = process.env.PORT || 4000;
 app.use('/', router);
 
 app.listen(port, () => {
-    console.log(`Travel Agency running on port ${port}`);
+	console.log(`Travel Agency running on port ${port}`);
 });
