@@ -3,19 +3,39 @@ extends ./layout/index
 block content
     main.container.mt-5
         h1.text-center.mt-5 #{title}
+        blockquote.text-center Read what our clients say about us
+
+        div.row.testimoniales
+
+            each testimonial in testimonials
+                div.col-md-6.col-lg-4.mb-4
+                    div.card
+                        div.card-body
+                            blockquote.blockquote
+                            p.mb-0 #{testimonial.mensaje}
+                            footer.blockquote-footer
+                                | #{testimonial.nombre}
+                                cite.small.text-muted #{testimonial.correo}
+
         div.row
-            h2.d-block.w-100.text-center Add a testimonial
+
+            div.col-md-12
+                h2.d-block.w-100.text-center Add a testimonial
+
+                if errors
+                    each error in errors
+                        div.alert.alert-danger.col.text-center #{error.message}
 
             div.row.justify-content-center.col
                 div.col-md-8
                     form(action="/testimonials" method="post")
                         div.form-group
                             label(for="nombre") Name
-                            input#nombre.form-control(type="text" name="nombre" placeholder="Name")
+                            input#nombre.form-control(type="text" name="nombre" placeholder="Name", value=nombre)
                         div.form-group
                             label(for="email") Email
-                            input#email.form-control(type="email" name="email" placeholder="Email")
+                            input#email.form-control(type="email" name="email" placeholder="Email", value=email)
                         div.form-group
                             label(for="mensaje") Message
-                            textarea#mensaje.form-control(name="mensaje" rows="3" placeholder="Message")
+                            textarea#mensaje.form-control(name="mensaje" rows="3" placeholder="Message") #{mensaje}
                         input.btn.btn-success.btn-block(type="submit" value="Send")
