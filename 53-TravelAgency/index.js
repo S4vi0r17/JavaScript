@@ -1,11 +1,10 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import router from './routes/index.js';
 import db from './config/db.js';
 
-dotenv.config();
+// dotenv.config();
 
-console.log('eeee: ',process.env.DATABASE);
+// console.log('eeee: ',process.env.DATABASE);
 
 const app = express();
 
@@ -22,7 +21,6 @@ app.set('view engine', 'pug');
 
 // Get year
 app.use((req, res, next) => {
-
 	/*
 		req: Lo que enviamos
 		res: Lo que Express nos responde
