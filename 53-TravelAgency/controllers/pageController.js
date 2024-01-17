@@ -1,10 +1,24 @@
 import { Destination } from '../models/Destination.js';
 import { Testimonial } from '../models/Testimonials.js';
 
-const homePage = (req, res) => {
-	res.render('home', {
-		title: 'Home',
-	});
+const homePage = async (req, res) => {
+	// Get 3 destinations from the database
+	try {
+		const promises = [];
+		promises.push(Destination.findAll({ limit: 3 }));
+		promises.push(Testimonial.findAll({ limit: 3 }));
+
+		const [destinations, testimonials] = await Promise.all(promises);
+
+		res.render('home', {
+			title: 'Home',
+			classHome: 'home',
+			destinations,
+			testimonials,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const aboutPage = (req, res) => {

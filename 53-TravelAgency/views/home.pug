@@ -1,6 +1,33 @@
 extends ./layout/index
 
+block slider
+    div.slider
+        h1 Río de Janeiro
+        em Adventure
+
 block content
     main.container.mt-5
-        div.row
-            h1 #{page}
+        h2.text-center.mb-5 About Us
+        div.row.mb-5
+            div.col-md-6
+                p Nam pretium tempor augue, eget  imperdiet dui pulvinar vel. Sed a elit ullamcorper, pharetra justo sed, tempus leo. Etiam eget dui efficitur, luctus ex nec, tempor enim.
+
+                p Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed pulvinar ligula a orci dapibus vulputate. Sed condimentum mauris ligula, quis faucibus enim sollicitudin sit amet.
+            div.col-md-6
+                img.img-fluid(src="/img/inicio_nosotros.jpg" alt="About Us Image")
+
+        include ./partials/destinations_block
+
+    div.descuento
+        div.container
+            div.row
+                div.col-md-6
+                    div.contenido
+                        h3 50% Off
+                        p.titulo Trip to Canada
+                        p.fecha 20/01/2024 - 27/01/2024
+                        p.precio $ 1.500
+
+    div.container
+        h2.mt-5.text-center Testimonials
+        include ./partials/testimonials_block

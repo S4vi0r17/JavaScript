@@ -5,17 +5,7 @@ block content
         h1.text-center.mt-5 #{title}
         blockquote.text-center Read what our clients say about us
 
-        div.row.testimoniales
-
-            each testimonial in testimonials
-                div.col-md-6.col-lg-4.mb-4
-                    div.card
-                        div.card-body
-                            blockquote.blockquote
-                            p.mb-0 #{testimonial.mensaje}
-                            footer.blockquote-footer
-                                | #{testimonial.nombre}
-                                cite.small.text-muted #{testimonial.correo}
+        include ./partials/testimonials_block
 
         div.row
 
