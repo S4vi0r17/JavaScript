@@ -28,4 +28,26 @@ const testimonialsPage = (req, res) => {
 	});
 };
 
-export { homePage, aboutPage, destinationsPage, testimonialsPage };
+// Show details of a destination
+const detailsDestination = async (req, res) => {
+	// console.log(req.params);
+	const { slug } = req.params;
+
+	try {
+		const result = await Destination.findOne({ where: { slug } });
+		res.render('destination', {
+			title: 'Destination Details',
+			result,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export {
+	homePage,
+	aboutPage,
+	destinationsPage,
+	testimonialsPage,
+	detailsDestination,
+};

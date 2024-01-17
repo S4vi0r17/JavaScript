@@ -4,6 +4,7 @@ import {
 	aboutPage,
 	destinationsPage,
 	testimonialsPage,
+	detailsDestination
 } from '../controllers/pageController.js';
 
 const router = express.Router();
@@ -21,6 +22,8 @@ router.get('/', homePage);
 router.get('/about', aboutPage);
 
 router.get('/destinations', destinationsPage);
+
+router.get('/destinations/:slug', detailsDestination);
 
 router.get('/testimonials', testimonialsPage);
 
