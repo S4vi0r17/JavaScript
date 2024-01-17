@@ -11,9 +11,9 @@ const db = new Sequelize('travelagency', 'root', 'benites1234', {
 		max: 5,
 		min: 0,
 		acquire: 30000,
-		idle: 10000,
+		idle: 10000
 	},
-	operatorAliases: false,
+	operatorAliases: false
 });
 
 export default db;
