@@ -4,8 +4,9 @@ import {
 	aboutPage,
 	destinationsPage,
 	testimonialsPage,
-	detailsDestination
+	detailsDestination,
 } from '../controllers/pageController.js';
+import { saveTestimonial } from '../controllers/testimonialController.js';
 
 const router = express.Router();
 
@@ -26,5 +27,6 @@ router.get('/destinations', destinationsPage);
 router.get('/destinations/:slug', detailsDestination);
 
 router.get('/testimonials', testimonialsPage);
+router.post('/testimonials', saveTestimonial);
 
 export default router;

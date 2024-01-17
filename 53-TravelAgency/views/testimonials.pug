@@ -2,5 +2,20 @@ extends ./layout/index
 
 block content
     main.container.mt-5
+        h1.text-center.mt-5 #{title}
         div.row
-            h1 #{page}
+            h2.d-block.w-100.text-center Add a testimonial
+
+            div.row.justify-content-center.col
+                div.col-md-8
+                    form(action="/testimonials" method="post")
+                        div.form-group
+                            label(for="nombre") Name
+                            input#nombre.form-control(type="text" name="nombre" placeholder="Name")
+                        div.form-group
+                            label(for="email") Email
+                            input#email.form-control(type="email" name="email" placeholder="Email")
+                        div.form-group
+                            label(for="mensaje") Message
+                            textarea#mensaje.form-control(name="mensaje" rows="3" placeholder="Message")
+                        input.btn.btn-success.btn-block(type="submit" value="Send")

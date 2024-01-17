@@ -31,6 +31,9 @@ app.use((req, res, next) => {
 	next(); // return next(); para forzar
 });
 
+// Add body parser for read data from forms
+app.use(express.urlencoded({ extended: true }));
+
 // Define public folder
 app.use(express.static('public'));
 
