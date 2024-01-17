@@ -1,0 +1,28 @@
+extends ./layout/index
+
+block content
+    main.container.mt-5
+        div.row
+            div.col-md-5
+                img.img-fluid(src="/img/nosotros.jpg", alt="About Image")
+            div.col-md-7
+                h1 #{title}
+                blockquote Cras egestas tellus sit amet nibh aliquet, id mollis ipsum cursus. Nulla fermentum lobortis ex sit amet semper. Nam sit amet faucibus velit, at feugiat mauris. Sed eu nibh et est faucibus pulvinar ac id magna. Quisque at consectetur quam.
+                p Nam at congue elit. Nunc in magna nunc. Vivamus et elit id justo pharetra euismod. Nunc sit amet faucibus ligula.
+                p Maecenas tempor faucibus sodales. Suspendisse quis enim odio. Nullam rhoncus sagittis sagittis. Suspendisse rutrum eros ante, et gravida lectus feugiat at. Maecenas malesuada lacus ac orci consectetur suscipit.
+
+    div.listado-iconos
+        div.container.mt-5.py-5.text-center
+            div.row
+                .col-md-4
+                    img.img-fluid.mb-4(src="/img/icono_seguridad.svg", alt="Security Icon")
+                    h2.mt-4 Security
+                    p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                .col-md-4
+                    img.img-fluid.mb-4(src="/img/icono_destinos.svg", alt="Destinations Icon")
+                    h2.mt-4 Destinations
+                    p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                .col-md-4
+                    img.img-fluid.mb-4(src="/img/icono_precios.svg", alt="Prices Icon")
+                    h2.mt-4 Best Prices
+                    p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
