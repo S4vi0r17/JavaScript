@@ -1,0 +1,11 @@
+# DB_NAME=travelagency
+# DB_USER=root
+# DB_PASS=benites1234
+# DB_HOST=localhost
+
+# DB_NAME=travelagency_includeact
+# DB_USER=travelagency_includeact
+# DB_PASS=211646db8e9694338226d36eb94904999f73cf51
+# DB_HOST=ln6.h.filess.io
+
+DATABASE_URL=mysql://travelagency_includeact:211646db8e9694338226d36eb94904999f73cf51@ln6.h.filess.io:3307/travelagency_includeact
