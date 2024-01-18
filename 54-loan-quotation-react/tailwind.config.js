@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         pinkLavender: "#f6e3ec",
-        lightPink: "#ffd9de",
+        lightPink: "#DC9FBD",
         mauve: "#a46b88"
       },
     },
