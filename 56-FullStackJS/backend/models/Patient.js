@@ -15,15 +15,16 @@ const patientSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now()
     },
     symptoms: {
         type: String,
         required: true
     },
-    veternarian: {
+    veterinarian: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Veternarian'
+        ref: 'veterinarian'
     }
 }, {
     timestamps: true // Adds createdAt and updatedAt fields
