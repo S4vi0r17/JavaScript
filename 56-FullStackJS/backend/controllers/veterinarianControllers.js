@@ -14,7 +14,7 @@ const register = async (req, res) => {
     const emailExists = await Veterinarian.findOne({ email });
 
     if (emailExists) {
-        return res.status(400).json({ error: 'Email already exists' });
+        return res.status(400).json({ msg: 'Email already exists' });
     }
 
     try {
@@ -22,7 +22,7 @@ const register = async (req, res) => {
         const veterinarianSaved = await veterinarian.save();
         res.json(veterinarianSaved);
     } catch (error) {
-        res.status(400).json({ error: 'Error registering veterinarian' });
+        res.status(400).json({ msg: 'Error registering veterinarian' });
     }
 };
 
@@ -39,16 +39,16 @@ const confirm = async (req, res) => {
     const veterinarian = await Veterinarian.findOne({ token });
 
     if (!veterinarian) {
-        return res.status(400).json({ error: 'Invalid token' });
+        return res.status(400).json({ msg: 'Invalid token' });
     }
 
     try {
         veterinarian.confirmed = true;
         veterinarian.token = null;
         await veterinarian.save();
-        res.json({ message: 'Veterinarian confirmed' });
+        res.json({ msg: 'Veterinarian confirmed' });
     } catch (error) {
-        res.status(400).json({ error: 'Error confirming veterinarian' });
+        res.status(400).json({ msg: 'Error confirming veterinarian' });
     }
 };
 
@@ -60,19 +60,19 @@ const authProfile = async (req, res) => {
     const veterinarian = await Veterinarian.findOne({ email });
 
     if (!veterinarian) {
-        return res.status(403).json({ error: 'Veterinarian does not exist' });
+        return res.status(403).json({ msg: 'Veterinarian does not exist' });
     }
 
     // Check if the veterinarian is confirmed
     if (!veterinarian.confirmed) {
-        return res.status(403).json({ error: 'Veterinarian not confirmed' });
+        return res.status(403).json({ msg: 'Veterinarian not confirmed' });
     }
 
     // Check if the password is correct
     const isMatch = await veterinarian.matchPassword(password);
 
     if (!isMatch) {
-        return res.status(403).json({ error: 'Invalid password' });
+        return res.status(403).json({ msg: 'Invalid password' });
     }
 
     // Authenticate the veterinarian
@@ -94,11 +94,11 @@ const forgot = async (req, res) => {
         veterinarian.token = token;
         await veterinarian.save();
         res.json({
-            message:
+            msg:
                 'We have sent you an email with instructions to reset your password',
         });
     } catch (error) {
-        res.status(400).json({ error: 'Error sending token' });
+        res.status(400).json({ msg: 'Error sending token' });
     }
 };
 
@@ -107,10 +107,10 @@ const checkToken = async (req, res) => {
     const validToken = await Veterinarian.findOne({ token });
 
     if (!validToken) {
-        return res.status(400).json({ error: 'Invalid token' });
+        return res.status(400).json({ msg: 'Invalid token' });
     }
 
-    res.json({ message: 'Token is valid and user exists' });
+    res.json({ msg: 'Token is valid and user exists' });
 };
 
 const newPassword = async (req, res) => {
@@ -120,7 +120,7 @@ const newPassword = async (req, res) => {
     const veterinarian = await Veterinarian.findOne({ token });
 
     if (!veterinarian) {
-        return res.status(400).json({ error: 'Invalid token' });
+        return res.status(400).json({ msg: 'Invalid token' });
     }
 
     try {
@@ -128,9 +128,9 @@ const newPassword = async (req, res) => {
         veterinarian.token = null;
         veterinarian.password = password;
         await veterinarian.save();
-        res.json({ message: 'Password updated' });
+        res.json({ msg: 'Password updated' });
     } catch (error) {
-        res.status(400).json({ error: 'Error updating password' });
+        res.status(400).json({ msg: 'Error updating password' });
     }
 };
 

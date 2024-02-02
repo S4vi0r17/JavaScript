@@ -1,5 +1,6 @@
 import Express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import connectDB from './config/db.js';
 import VeterinarianRoutes from './routes/veterinarianRoutes.js';
 import PatientRoutes from './routes/patientRoutes.js';
@@ -9,6 +10,19 @@ app.use(Express.json());
 dotenv.config();
 
 connectDB();
+const permittedOrigins = ['http://localhost:5173', 'http://localhost:4000'];
+
+const corsOptions = {
+	origin: function (origin, callback) {
+		if (permittedOrigins.indexOf(origin) !== -1 ) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+};
+
+app.use(cors(corsOptions));
 
 // console.log(process.env.MONGO_URI);
 

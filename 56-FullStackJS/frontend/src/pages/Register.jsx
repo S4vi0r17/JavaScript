@@ -1,6 +1,50 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Alert from '../components/Alert';
 
 const Register = () => {
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [repeatPassword, setRepeatPassword] = useState('');
+
+	const [alert, setAlert] = useState({});
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		if ([name, email, password, repeatPassword].includes('')) {
+			return setAlert({ error: true, msg: 'Please fill all the fields' });
+		}
+
+		if (password !== repeatPassword) {
+			return setAlert({ error: true, msg: 'Passwords do not match' });
+		}
+
+		if (password.length < 6) {
+			return setAlert({
+				error: true,
+				msg: 'Password must be at least 6 characters long',
+			});
+		}
+
+		setAlert({});
+
+		// Create the user in the API
+		try {
+			const url = 'http://localhost:4000/api/veterinarians';
+			await axios.post(url, { name, email, password });
+			setAlert({
+				error: false,
+				msg: 'Account created successfully, check your email',
+			});
+		} catch (error) {
+			setAlert({ error: true, msg: error.response.data.msg });
+		}
+	};
+
+	const { msg } = alert;
+
 	return (
 		<>
 			<div>
@@ -11,7 +55,9 @@ const Register = () => {
 			</div>
 
 			<div className='mt-20 md:mt-0 shadow-lg px-5 py-6 rounded-xl bg-white'>
-				<form>
+				{msg && <Alert alert={alert} />}
+
+				<form onSubmit={handleSubmit}>
 					<div className='my-5'>
 						<label className='uppercase text-gray-600 block text-xl font-bold'>
 							Name
@@ -19,7 +65,9 @@ const Register = () => {
 						<input
 							type='text'
 							placeholder='Your Name'
-							className='border w-full p-3 mt-3 bg-gray-50 rounded-xl outline-brown-500'
+							className='border w-full p-3 mt-3 bg-gra-50 rounded-xl outline-brown-500'
+							value={name}
+							onChange={(e) => setName(e.target.value)}
 						/>
 					</div>
 
@@ -31,6 +79,8 @@ const Register = () => {
 							type='email'
 							placeholder='Registration Email'
 							className='border w-full p-3 mt-3 bg-gray-50 rounded-xl outline-brown-500'
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
 
@@ -42,6 +92,9 @@ const Register = () => {
 							type='password'
 							placeholder='Your Password'
 							className='border w-full p-3 mt-3 bg-gray-50 rounded-xl outline-brown-500'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							autoComplete='off'
 						/>
 					</div>
 
@@ -53,6 +106,9 @@ const Register = () => {
 							type='password'
 							placeholder='Repeat Your Password'
 							className='border w-full p-3 mt-3 bg-gray-50 rounded-xl outline-brown-500'
+							value={repeatPassword}
+							onChange={(e) => setRepeatPassword(e.target.value)}
+							autoComplete='off'
 						/>
 					</div>
 
