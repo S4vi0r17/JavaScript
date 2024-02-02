@@ -2,6 +2,7 @@ import e from 'express';
 import generateJWT from '../helpers/generateJWT.js';
 import Veterinarian from '../models/Veterinarian.js';
 import generateId from '../helpers/generateID.js';
+import emailRegister from '../helpers/emailRegister.js';
 
 const register = async (req, res) => {
     console.log(req.body);
@@ -20,7 +21,16 @@ const register = async (req, res) => {
     try {
         const veterinarian = new Veterinarian(req.body);
         const veterinarianSaved = await veterinarian.save();
+
+        // Send email to the veterinarian
+        emailRegister({
+            email: veterinarianSaved.email,
+            token: veterinarianSaved.token,
+            name: veterinarianSaved.name
+        })
+
         res.json(veterinarianSaved);
+        
     } catch (error) {
         res.status(400).json({ msg: 'Error registering veterinarian' });
     }
