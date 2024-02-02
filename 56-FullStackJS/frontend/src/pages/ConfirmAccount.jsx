@@ -1,7 +1,7 @@
 const ConfirmAccount = () => {
 	return (
 		<>
-			<h1>ConfirmAccount</h1>
+			<h1>Confirm Account</h1>
 		</>
 	);
 };
