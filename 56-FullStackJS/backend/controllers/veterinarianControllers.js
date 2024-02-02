@@ -1,3 +1,4 @@
+import generateJWT from '../helpers/generateJWT.js';
 import Veterinarian from '../models/Veterinarian.js';
 
 const register = async (req, res) => {
@@ -27,8 +28,8 @@ const profile = (req, res) => {
     res.send({ message: 'Fetching veterinarian profile' });
 }
 
-const confirm = async(req, res) => {
-    const {token} = req.params;
+const confirm = async (req, res) => {
+    const { token } = req.params;
 
     const veterinarian = await Veterinarian.findOne({ token });
 
@@ -47,7 +48,7 @@ const confirm = async(req, res) => {
 }
 
 // Authenticated veterinarians can update their profile
-const authProfile = async(req, res) => {
+const authProfile = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if the veterinarian exists
@@ -70,6 +71,8 @@ const authProfile = async(req, res) => {
     }
 
     // Authenticate the veterinarian
+    const token = generateJWT(veterinarian._id);
+    res.json({ token });
 }
 
 export {
