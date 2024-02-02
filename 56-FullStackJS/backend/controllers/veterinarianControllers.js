@@ -27,7 +27,54 @@ const profile = (req, res) => {
     res.send({ message: 'Fetching veterinarian profile' });
 }
 
+const confirm = async(req, res) => {
+    const {token} = req.params;
+
+    const veterinarian = await Veterinarian.findOne({ token });
+
+    if (!veterinarian) {
+        return res.status(400).json({ error: 'Invalid token' });
+    }
+
+    try {
+        veterinarian.confirmed = true;
+        veterinarian.token = null;
+        await veterinarian.save();
+        res.json({ message: 'Veterinarian confirmed' })
+    } catch (error) {
+        res.status(400).json({ error: 'Error confirming veterinarian' });
+    }
+}
+
+// Authenticated veterinarians can update their profile
+const authProfile = async(req, res) => {
+    const { email, password } = req.body;
+
+    // Check if the veterinarian exists
+    const veterinarian = await Veterinarian.findOne({ email });
+
+    if (!veterinarian) {
+        return res.status(403).json({ error: 'Veterinarian does not exist' });
+    }
+
+    // Check if the veterinarian is confirmed
+    if (!veterinarian.confirmed) {
+        return res.status(403).json({ error: 'Veterinarian not confirmed' });
+    }
+
+    // Check if the password is correct
+    const isMatch = await veterinarian.matchPassword(password);
+
+    if (!isMatch) {
+        return res.status(403).json({ error: 'Invalid password' });
+    }
+
+    // Authenticate the veterinarian
+}
+
 export {
     register,
-    profile
+    profile,
+    confirm,
+    authProfile
 };
