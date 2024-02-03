@@ -9,6 +9,8 @@ const Login = () => {
 	const [password, setPassword] = useState('');
 	const [alert, setAlert] = useState({});
 
+	const { setAuth } = useAuth();
+
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
@@ -28,6 +30,7 @@ const Login = () => {
 				password,
 			});
 			localStorage.setItem('token', data.token);
+			setAuth(data);
 			navigate('/admin');
 		} catch (error) {
 			setAlert({

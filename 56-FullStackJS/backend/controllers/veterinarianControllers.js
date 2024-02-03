@@ -87,8 +87,15 @@ const authProfile = async (req, res) => {
     }
 
     // Authenticate the veterinarian
-    const token = generateJWT(veterinarian._id);
-    res.json({ token });
+    // const token = generateJWT(veterinarian._id);
+    // res.json({ token });
+    veterinarian.token = generateJWT(veterinarian._id);
+    res.json({ 
+        _id: veterinarian._id,
+        name: veterinarian.name,
+        email: veterinarian.email,
+        token : veterinarian.token
+     });
 };
 
 const forgot = async (req, res) => {

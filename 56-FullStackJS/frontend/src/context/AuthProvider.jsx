@@ -5,11 +5,15 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
 	const [auth, setAuth] = useState({});
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const authVeterinarian = async () => {
 			const token = localStorage.getItem('token');
-			if (!token) return;
+			if (!token) {
+				setLoading(false);
+				return;
+			}
 
 			const config = {
 				headers: {
@@ -28,15 +32,23 @@ const AuthProvider = ({ children }) => {
 				console.log(error);
 				setAuth({});
 			}
+			setLoading(false);
 		};
 		authVeterinarian();
 	}, []);
+
+	const logout = () => {
+		localStorage.removeItem('token');
+		setAuth({});
+	};
 
 	return (
 		<AuthContext.Provider
 			value={{
 				auth,
 				setAuth,
+				loading,
+				logout,
 			}}
 		>
 			{children}
