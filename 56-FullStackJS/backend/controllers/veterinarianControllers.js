@@ -3,6 +3,7 @@ import generateJWT from '../helpers/generateJWT.js';
 import Veterinarian from '../models/Veterinarian.js';
 import generateId from '../helpers/generateID.js';
 import emailRegister from '../helpers/emailRegister.js';
+import emailForgot from '../helpers/emailForgotPassword.js';
 
 const register = async (req, res) => {
     console.log(req.body);
@@ -103,6 +104,14 @@ const forgot = async (req, res) => {
         const token = generateId();
         veterinarian.token = token;
         await veterinarian.save();
+
+        // Send email to the veterinarian
+        emailForgot({
+            email: veterinarian.email,
+            token: veterinarian.token,
+            name: veterinarian.name
+        })
+
         res.json({
             msg:
                 'We have sent you an email with instructions to reset your password',

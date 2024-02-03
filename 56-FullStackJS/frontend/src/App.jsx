@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ConfirmAccount from './pages/ConfirmAccount';
 import ForgotPassword from './pages/ForgotPassword';
+import NewPassword from './pages/NewPassword';
 
 const App = () => {
 	return (
@@ -11,14 +12,8 @@ const App = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route path='/' element={<AuthLayout />}>
-						<Route
-                            index
-                            element={<Login />}
-                        />
-						<Route
-                            path='register'
-                            element={<Register />}
-                        />
+						<Route index element={<Login />} />
+						<Route path='register' element={<Register />} />
 						<Route
 							path='confirm-account/:id'
 							element={<ConfirmAccount />}
@@ -26,6 +21,10 @@ const App = () => {
 						<Route
 							path='forgot-password'
 							element={<ForgotPassword />}
+						/>
+						<Route
+							path='forgot-password/:token'
+							element={<NewPassword />}
 						/>
 					</Route>
 				</Routes>

@@ -10,7 +10,7 @@ app.use(Express.json());
 dotenv.config();
 
 connectDB();
-const permittedOrigins = ['http://localhost:5173', 'http://localhost:4000'];
+const permittedOrigins = [process.env.FRONTEND_URL];
 
 const corsOptions = {
 	origin: function (origin, callback) {
