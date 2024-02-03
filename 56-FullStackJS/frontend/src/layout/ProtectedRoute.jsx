@@ -6,8 +6,8 @@ import useAuth from '../hooks/useAuth';
 const ProtectedRoute = () => {
 	const { auth, loading } = useAuth();
 
-	console.log(auth);
-	console.log(loading);
+	// console.log(auth);
+	// console.log(loading);
 
 	if (loading) return 'loading...';
 

@@ -1,14 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Alert from '../components/Alert';
+import usePatients from '../hooks/usePatients';
 
 const Form = () => {
 	const [name, setName] = useState('');
 	const [owner, setOwner] = useState('');
 	const [email, setEmail] = useState('');
-	const [date, setDate] = useState(Date.now());
+	const [date, setDate] = useState('');
 	const [symptoms, setSymptoms] = useState('');
+	const [id, setId] = useState(null);
 
 	const [alert, setAlert] = useState({});
+	const { savePatient, patient } = usePatients();
+
+	useEffect(() => {
+		if (patient?.name) {
+			const { name, owner, email, date, symptoms } = patient;
+			setName(name);
+			setOwner(owner);
+			setEmail(email);
+			setDate(date);
+			setSymptoms(symptoms);
+			setId(patient._id);
+		}
+	}, [patient]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -22,9 +37,22 @@ const Form = () => {
 			return;
 		}
 
-		setAlert({});
+		
+		savePatient({ name, owner, email, date, symptoms, id });
+		setAlert({
+			error: false,
+			msg: id ? 'Patient updated' : 'Patient added',
+		});
+		setTimeout(() => {
+			setAlert({});
+		}, 3000);
 
-		console.log('Form submitted');
+		setName('');
+		setOwner('');
+		setEmail('');
+		setDate('');
+		setSymptoms('');
+		setId(null);
 	};
 
 	const { msg } = alert;
@@ -129,7 +157,8 @@ const Form = () => {
 
 				<input
 					type='submit'
-					className='bg-brown-500 w-full p-3 text-white uppercase font-bold hover:bg-brown-600 cursor-pointer transition-colors'
+					className='bg-brown-500 w-full p-3 text-white uppercase font-bold hover:bg-brown-600 cursor-pointer transition-colors rounded-lg'
+					value={id ? 'Save Changes' : 'Add Patient'}
 				/>
 			</form>
 		</>
