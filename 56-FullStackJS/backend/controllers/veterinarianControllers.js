@@ -31,7 +31,7 @@ const register = async (req, res) => {
         })
 
         res.json(veterinarianSaved);
-        
+
     } catch (error) {
         res.status(400).json({ msg: 'Error registering veterinarian' });
     }
@@ -39,9 +39,9 @@ const register = async (req, res) => {
 
 const profile = (req, res) => {
     // console.log(req.veterinarian);
-    const { name, email, phone, web } = req.veterinarian;
+    const { veterinarian } = req;
 
-    res.json({ profile: req.veterinarian });
+    res.json({ veterinarian });
 };
 
 const confirm = async (req, res) => {

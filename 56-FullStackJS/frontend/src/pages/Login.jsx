@@ -1,6 +1,44 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Alert from '../components/Alert';
+import useAuth from '../hooks/useAuth';
+import axiosClient from '../config/axios';
 
 const Login = () => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [alert, setAlert] = useState({});
+
+	const navigate = useNavigate();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		if ([email, password].includes('')) {
+			setAlert({
+				msg: 'All fields are required',
+				error: true,
+			});
+			return;
+		}
+
+		try {
+			const { data } = await axiosClient.post('/veterinarians/login', {
+				email,
+				password,
+			});
+			localStorage.setItem('token', data.token);
+			navigate('/admin');
+		} catch (error) {
+			setAlert({
+				msg: error.response.data.msg,
+				error: true,
+			});
+		}
+	};
+
+	const { msg } = alert;
+
 	return (
 		<>
 			<div>
@@ -10,7 +48,8 @@ const Login = () => {
 				</h1>
 			</div>
 			<div className='mt-20 md:mt-0 shadow-lg px-5 py-6 rounded-xl bg-white'>
-				<form>
+				{msg && <Alert alert={alert} />}
+				<form onSubmit={handleSubmit}>
 					<div className='my-5'>
 						<label className='uppercase text-gray-600 block text-xl font-bold'>
 							Email
@@ -19,6 +58,8 @@ const Login = () => {
 							type='email'
 							placeholder='Registration Email'
 							className='border w-full p-3 mt-3 bg-gray-50 rounded-xl outline-brown-500'
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
 					<div className='my-5'>
@@ -29,6 +70,8 @@ const Login = () => {
 							type='password'
 							placeholder='Your Password'
 							className='border w-full p-3 mt-3 bg-gray-50 rounded-xl outline-brown-500'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
 
