@@ -22,6 +22,11 @@ const corsOptions = {
     },
 };
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
 app.use(cors(corsOptions));
 
 // console.log(process.env.MONGO_URI);
