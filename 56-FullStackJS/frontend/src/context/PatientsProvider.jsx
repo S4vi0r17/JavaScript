@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect } from 'react';
 import axiosClient from '../config/axios';
+import useAuth from '../hooks/useAuth';
 
 const PatientsContext = createContext();
 
 export const PatientsProvider = ({ children }) => {
 	const [patients, setPatients] = useState([]);
 	const [patient, setPatient] = useState({});
+	const { auth } = useAuth();
 
 	useEffect(() => {
 		const getPatients = async () => {
@@ -25,7 +27,7 @@ export const PatientsProvider = ({ children }) => {
 			}
 		};
 		getPatients();
-	}, []);
+	}, [auth]);
 
 	const setEdition = (patient) => {
 		setPatient(patient);
@@ -71,7 +73,9 @@ export const PatientsProvider = ({ children }) => {
 	};
 
 	const deletePatient = async (id) => {
-		const confirmed = window.confirm('Are you sure you want to delete this patient?');
+		const confirmed = window.confirm(
+			'Are you sure you want to delete this patient?'
+		);
 		if (!confirmed) return;
 		const token = localStorage.getItem('token');
 		const config = {
@@ -87,7 +91,7 @@ export const PatientsProvider = ({ children }) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
 	return (
 		<PatientsContext.Provider

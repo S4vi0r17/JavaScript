@@ -8,6 +8,8 @@ import ConfirmAccount from './pages/ConfirmAccount';
 import ForgotPassword from './pages/ForgotPassword';
 import NewPassword from './pages/NewPassword';
 import ManagePatients from './pages/ManagePatients';
+import EditProfile from './pages/EditProfile';
+import ChangePassword from './pages/ChangePassword';
 
 import { AuthProvider } from './context/AuthProvider';
 import { PatientsProvider } from './context/PatientsProvider';
@@ -37,14 +39,14 @@ const App = () => {
 							</Route>
 							<Route path='/admin' element={<ProtectedRoute />}>
 								<Route index element={<ManagePatients />} />
-								{/* <Route
-								path='profile'
-								element={<EditProfile />}
-								
+								<Route
+									path='profile'
+									element={<EditProfile />}
+								/>
 								<Route
 									path='change-password'
 									element={<ChangePassword />}
-								/> */}
+								/>
 							</Route>
 						</Routes>
 					</PatientsProvider>

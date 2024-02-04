@@ -160,6 +160,60 @@ const newPassword = async (req, res) => {
     }
 };
 
+const updateProfile = async (req, res) => {
+    const veterinarian = await Veterinarian.findById(req.params.id);
+    if (!veterinarian) {
+        return res.status(400).json({ msg: 'Veterinarian not found' });
+    }
+
+    const { email } = req.body;
+
+    if (veterinarian.email !== req.body.email) {
+        const emailExists = await Veterinarian.findOne({ email
+        });
+        if (emailExists) {
+            return res.status(400).json({ msg: 'Email already exists' });
+        }
+    }
+
+    try {
+        // const updatedVeterinarian = await Veterinarian.findByIdAndUpdate(
+        //     req.params.id,
+        //     req.body,
+        //     { new: true }
+        // );
+        // res.json(updatedVeterinarian);
+        veterinarian.name = req.body.name
+        veterinarian.email = req.body.email
+        veterinarian.phone = req.body.phone
+        veterinarian.web = req.body.web
+
+        const updatedVeterinarian = await veterinarian.save();
+        res.json(updatedVeterinarian);
+    } catch (error) {
+        res.status(400).json({ msg: 'Error updating veterinarian' });
+    }
+}
+
+const updatePassword = async (req, res) => {
+    const {id} = req.veterinarian;
+    const { current_password, new_password } = req.body;
+
+    const veterinarian = await Veterinarian.findById(id);
+    if (!veterinarian) {
+        return res.status(400).json({ msg: 'Veterinarian not found' });
+    }
+
+    const isMatch = await veterinarian.matchPassword(current_password);
+    if (!isMatch) {
+        return res.status(400).json({ msg: 'Invalid password' });
+    }
+
+    veterinarian.password = new_password;
+    await veterinarian.save();
+    res.json({ msg: 'Password updated' });
+}
+
 export {
     register,
     profile,
@@ -168,4 +222,6 @@ export {
     forgot,
     checkToken,
     newPassword,
+    updateProfile,
+    updatePassword
 };

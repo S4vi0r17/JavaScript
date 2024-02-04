@@ -7,6 +7,8 @@ import {
     forgot,
     checkToken,
     newPassword,
+    updateProfile,
+    updatePassword
 } from '../controllers/veterinarianControllers.js';
 import checkAuth from '../middlewares/authMiddleware.js';
 
@@ -23,5 +25,7 @@ router.route('/forgot/:token').get(checkToken).post(newPassword);
 
 // Authenticated routes
 router.get('/profile', checkAuth, profile);
+router.put('/profile/:id', checkAuth, updateProfile);
+router.put('/update-password', checkAuth, updatePassword);
 
 export default router;
