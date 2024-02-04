@@ -10,24 +10,20 @@ app.use(Express.json());
 dotenv.config();
 
 connectDB();
-const permittedOrigins = [process.env.FRONTEND_URL, '*'];
+const permittedOrigins = [process.env.FRONTEND_URL];
 
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (permittedOrigins.indexOf(origin) !== -1 || permittedOrigins.includes('*')) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-};
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (permittedOrigins.indexOf(origin) !== -1 ) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+// };
 
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something went wrong!');
-});
-
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // console.log(process.env.MONGO_URI);
 
