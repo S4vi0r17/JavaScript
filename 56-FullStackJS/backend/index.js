@@ -12,18 +12,17 @@ dotenv.config();
 connectDB();
 const permittedOrigins = [process.env.FRONTEND_URL];
 
-// const corsOptions = {
-//     origin: function (origin, callback) {
-//         if (permittedOrigins.indexOf(origin) !== -1 ) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error('Not allowed by CORS'));
-//         }
-//     },
-// };
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (permittedOrigins.indexOf(origin) !== -1 ) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+};
 
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
 
 // console.log(process.env.MONGO_URI);
 
