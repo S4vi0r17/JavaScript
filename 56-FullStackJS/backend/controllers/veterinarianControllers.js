@@ -1,7 +1,7 @@
 import e from 'express';
 import generateJWT from '../helpers/generateJWT.js';
 import Veterinarian from '../models/Veterinarian.js';
-import generateId from '../helpers/generateID.js';
+import generateId from '../helpers/generateId.js';
 import emailRegister from '../helpers/emailRegister.js';
 import emailForgot from '../helpers/emailForgotPassword.js';
 
