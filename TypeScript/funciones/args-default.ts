@@ -1,21 +1,17 @@
 (() => {
+	const fullName = (
+		firstName: string,
+		lastName?: string,
+		upper: boolean = false
+	): string => {
+		if (upper) {
+			return `${firstName} ${lastName || '----'}`.toUpperCase();
+		} else {
+			return `${firstName} ${lastName || '----'}`;
+		}
+	};
 
-    const fullName = ( firstName: string, lastName?:string, upper: boolean = false ): string => {
+	const name = fullName('Tony', 'Stark', true);
 
-        if ( upper ) {
-            return `${ firstName } ${ lastName || '----' }`.toUpperCase();
-        } else {
-            return `${ firstName } ${ lastName || '----' }`;
-        }
-
-
-    }
-
-    const name = fullName( 'Tony', 'Stark', true );
-
-    console.log({ name });
-
-
-})()
-
-
+	console.log({ name });
+})();
