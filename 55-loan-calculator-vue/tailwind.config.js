@@ -5,7 +5,13 @@ export default {
     './src/**/*.{vue,js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        pinkLavender: "#f6e3ec",
+        lightPink: "#DC9FBD",
+        mauve: "#a46b88"
+      },
+    },
   },
   plugins: [],
 }
