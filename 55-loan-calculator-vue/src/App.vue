@@ -1,24 +1,50 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, computed } from 'vue';
 import Header from './components/Header.vue';
 import Button from './components/Button.vue';
 
-const quantity = ref(0)
+const quantity = ref(10000)
 
-const state = reactive({
-    quantity: 0
-})
-
-console.log(quantity.value);
-console.log(state);
+// const state = reactive({
+//     quantity: 0
+// })
 
 const MIN = 0
 const MAX = 20000
 const STEP = 100
 
-function handleRangeChange(e) {
-    console.log(e.target.value);
+const formatMoney = computed(() => {
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    return formatter.format(quantity.value);
+});
+
+const handleDecrement = () => {
+    let value = quantity.value - STEP
+    if (quantity.value > MIN) {
+        quantity.value = value
+        return;
+    }
+    alert('invalid amount')
 }
+
+const handleIncrement = () => {
+    let value = quantity.value + STEP
+    if (quantity.value < MAX) {
+        quantity.value = value
+        return;
+    }
+    alert('invalid amount')
+}
+
+// function handleRangeChange(e) {
+//     quantity.value = parseInt(e.target.value);
+// }
+// :value="quantity"
+// @input="handleRangeChange"
+// Todo eso se reemplaza por [v-model="quantity"]
 </script>
 
 <template>
@@ -27,14 +53,15 @@ function handleRangeChange(e) {
         <Header />
 
         <div class="flex justify-between items-center my-6">
-            <Button>-</Button>
-            <Button>+</Button>
+            <Button operator="-" @handle="handleDecrement" />
+            <Button operator="+" @handle="handleIncrement" />
         </div>
 
-        <input type="range" class="mt-5 w-full h-6 accent-mauve hover:accent-mauve" @input="handleRangeChange" />
+        <input type="range" class="mt-5 w-full h-6 accent-mauve hover:accent-mauve" :min="MIN" :max="MAX" :step="STEP"
+            v-model.number="quantity" />
 
         <p class="text-center my-10 text-5xl font-extrabold text-mauve">
-            10000
+            {{ formatMoney }}
         </p>
 
         <h2 class="text-center text-2xl font-bold text-gray-500">
