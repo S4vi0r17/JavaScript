@@ -17,12 +17,7 @@
 		getName?: () => string
 	} = {
 		name: 'Clark Kent',
-		// age: 60,
+		age: 60,
 		powers: ['Súper velocidad'],
-		getName() {
-			return this.name
-		},
 	}
-
-	console.log(flash)
 })()
