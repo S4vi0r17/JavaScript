@@ -1,37 +1,33 @@
-(()=> {
+;(() => {
+	class Apocalipsis {
+		static intance: Apocalipsis
 
-    class Apocalipsis {
+		private constructor(public name: string) {}
 
-        static intance:Apocalipsis;
+		static callApocalipsis(): Apocalipsis {
+			if (!Apocalipsis.intance) {
+				Apocalipsis.intance = new Apocalipsis(
+					'Soy apocalipsis el único'
+				)
+			}
 
-        private constructor( public name: string ) {}
+			return Apocalipsis.intance
+		}
 
-        static callApocalipsis(): Apocalipsis {
-            if ( !Apocalipsis.intance ) {
-                Apocalipsis.intance = new Apocalipsis('Soy apocalipsis el único');
-            }
+		changeName(newName: string): void {
+			this.name = newName
+		}
+	}
 
-            return Apocalipsis.intance;
-        }
+	const apocalipsis1 = Apocalipsis.callApocalipsis()
+	const apocalipsis2 = Apocalipsis.callApocalipsis()
+	const apocalipsis3 = Apocalipsis.callApocalipsis()
 
-        changeName( newName: string ):void {
-            this.name = newName;
-        }
+	apocalipsis1.changeName('Xavier')
 
-    }
+	// const apocalipsis1 = new Apocalipsis('Soy Apocalipsis1... el único')
+	// const apocalipsis2 = new Apocalipsis('Soy Apocalipsis2... el único')
+	// const apocalipsis3 = new Apocalipsis('Soy Apocalipsis3... el único')
 
-
-    const apocalipsis1 = Apocalipsis.callApocalipsis()
-    const apocalipsis2 = Apocalipsis.callApocalipsis()
-    const apocalipsis3 = Apocalipsis.callApocalipsis()
-
-    apocalipsis1.changeName('Xavier');
-
-    // const apocalipsis1 = new Apocalipsis('Soy Apocalipsis1... el único')
-    // const apocalipsis2 = new Apocalipsis('Soy Apocalipsis2... el único')
-    // const apocalipsis3 = new Apocalipsis('Soy Apocalipsis3... el único')
-
-    console.log(apocalipsis1, apocalipsis2, apocalipsis3);
-
-
+	console.log(apocalipsis1, apocalipsis2, apocalipsis3)
 })()
